@@ -1,9 +1,6 @@
 package com.example.week6project.configuration;
 
 
-import com.example.week6project.Security.JwtFilter;
-import com.example.week6project.Security.TokenProvider;
-import com.example.week6project.Service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,12 +12,12 @@ public class JwtSecurityConfiguration
     extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
   private final String SECRET_KEY;
-  private final TokenProvider tokenProvider;
-  private final UserDetailsServiceImpl userDetailsService;
+//  private final TokenProvider tokenProvider;
+//  private final UserDetailsServiceImpl userDetailsService;
 
   @Override
   public void configure(HttpSecurity httpSecurity) {
-    JwtFilter customJwtFilter = new JwtFilter(SECRET_KEY, tokenProvider, userDetailsService);
-    httpSecurity.addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class);
+//    JwtFilter customJwtFilter = new JwtFilter(SECRET_KEY, tokenProvider, userDetailsService);
+//    httpSecurity.addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class);
   }
 }

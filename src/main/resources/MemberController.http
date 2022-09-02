@@ -1,0 +1,38 @@
+### signup
+POST http://localhost:8080/api/member/signup
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf",
+  "pw": "asdf",
+  "nickname": "asdf"
+}
+
+### duplicateCheckId
+POST http://localhost:8080/api/member/chkId
+accept: */*
+Content-Type: application/json
+
+{
+  "idOrNickname": "adf"
+}
+
+### duplicateCheckNickname
+POST http://localhost:8080/api/member/chkName
+accept: */*
+Content-Type: application/json
+
+{
+  "idOrNickname": "asdf"
+}
+
+### login
+POST http://localhost:8080/api/member/login
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf",
+  "pw": "asdf"
+}
