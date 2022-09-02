@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    public static String AUTHORIZATION_HEADER = "Access-Token";
+    public static String AUTHORIZATION_HEADER = "Authorization";
     public static String BEARER_PREFIX = "Bearer ";
 
     public static String AUTHORITIES_KEY = "auth";
@@ -48,6 +48,8 @@ public class JwtFilter extends OncePerRequestFilter {
         Key key = Keys.hmacShaKeyFor(keyBytes);
 
         String jwt = resolveToken(request);
+
+        System.out.println(jwt);
 
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             Claims claims;
@@ -69,12 +71,14 @@ public class JwtFilter extends OncePerRequestFilter {
             }
 
             String subject = claims.getSubject();
+            System.out.println("filter"+subject);
             Collection<? extends GrantedAuthority> authorities =
                     Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                             .map(SimpleGrantedAuthority::new)
                             .collect(Collectors.toList());
 
             UserDetails principal = userDetailsService.loadUserByUsername(subject);
+            System.out.println("filter"+principal);
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(principal, jwt, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
