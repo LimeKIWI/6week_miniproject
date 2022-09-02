@@ -3,7 +3,7 @@ package com.example.week6project.configuration;
 
 import com.example.week6project.Security.JwtFilter;
 import com.example.week6project.Security.TokenProvider;
-import com.example.week6project.Service.UserDetailsServiceImpl;
+import com.example.week6project.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

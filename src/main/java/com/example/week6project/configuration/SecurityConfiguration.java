@@ -4,7 +4,7 @@ package com.example.week6project.configuration;
 import com.example.week6project.Security.AccessDeniedHandlerException;
 import com.example.week6project.Security.AuthenticationEntryPointException;
 import com.example.week6project.Security.TokenProvider;
-import com.example.week6project.Service.UserDetailsServiceImpl;
+import com.example.week6project.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
