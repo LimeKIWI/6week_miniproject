@@ -1,4 +1,4 @@
-package com.example.week6project.Security;
+package com.example.week6project.security;
 
 import com.example.week6project.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;

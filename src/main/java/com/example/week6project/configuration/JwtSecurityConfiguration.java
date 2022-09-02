@@ -1,8 +1,8 @@
 package com.example.week6project.configuration;
 
 
-import com.example.week6project.Security.JwtFilter;
-import com.example.week6project.Security.TokenProvider;
+import com.example.week6project.security.JwtFilter;
+import com.example.week6project.security.TokenProvider;
 import com.example.week6project.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

@@ -1,9 +1,9 @@
-package com.example.week6project.Service;
+package com.example.week6project.service;
 
-import com.example.week6project.Dto.TokenDto;
-import com.example.week6project.Dto.requestDto.*;
-import com.example.week6project.Dto.ResponseDto;
-import com.example.week6project.Security.TokenProvider;
+import com.example.week6project.dto.TokenDto;
+import com.example.week6project.dto.requestDto.*;
+import com.example.week6project.dto.ResponseDto;
+import com.example.week6project.security.TokenProvider;
 import com.example.week6project.domain.Member;
 import com.example.week6project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

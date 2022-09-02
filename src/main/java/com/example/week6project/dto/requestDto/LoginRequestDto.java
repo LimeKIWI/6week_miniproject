@@ -1,4 +1,4 @@
-package com.example.week6project.Dto.requestDto;
+package com.example.week6project.dto.requestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdultCheckRequestDto {
-    private String birthDate;
+public class LoginRequestDto {
+    private String id;
+    private String pw;
 }

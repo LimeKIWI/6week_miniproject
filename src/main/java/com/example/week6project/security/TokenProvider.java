@@ -1,6 +1,6 @@
-package com.example.week6project.Security;
+package com.example.week6project.security;
 
-import com.example.week6project.Dto.TokenDto;
+import com.example.week6project.dto.TokenDto;
 import com.example.week6project.domain.Authority;
 import com.example.week6project.domain.Member;
 import com.example.week6project.domain.RefreshToken;

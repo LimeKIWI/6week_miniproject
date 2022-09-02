@@ -1,9 +1,7 @@
 package com.example.week6project.controller;
 
-import com.example.week6project.Dto.ResponseDto;
-import com.example.week6project.Service.TestService;
+import com.example.week6project.service.TestService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

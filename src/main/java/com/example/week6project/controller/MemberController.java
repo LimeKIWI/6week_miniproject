@@ -1,8 +1,8 @@
 package com.example.week6project.controller;
 
-import com.example.week6project.Dto.ResponseDto;
-import com.example.week6project.Dto.requestDto.*;
-import com.example.week6project.Service.MemberService;
+import com.example.week6project.dto.ResponseDto;
+import com.example.week6project.dto.requestDto.*;
+import com.example.week6project.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

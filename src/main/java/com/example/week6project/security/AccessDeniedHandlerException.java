@@ -1,6 +1,6 @@
-package com.example.week6project.Security;
+package com.example.week6project.security;
 
-import com.example.week6project.Dto.ResponseDto;
+import com.example.week6project.dto.ResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
