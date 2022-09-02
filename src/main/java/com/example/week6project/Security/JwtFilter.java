@@ -1,6 +1,6 @@
 package com.example.week6project.Security;
 
-import com.example.week6project.Service.UserDetailsServiceImpl;
+import com.example.week6project.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    public static String AUTHORIZATION_HEADER = "Access-Token";
+    public static String AUTHORIZATION_HEADER = "Authorization";
     public static String BEARER_PREFIX = "Bearer ";
 
     public static String AUTHORITIES_KEY = "auth";
