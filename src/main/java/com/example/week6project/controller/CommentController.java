@@ -28,8 +28,8 @@ public class CommentController {
     }
     // 댓글 삭제
     @RequestMapping(value = "/api/comment", method = RequestMethod.DELETE)
-    public ResponseDto<?> deleteComment(@RequestBody CommentRequestDto commentRequestDto, @RequestParam("gameId") int gameType, @RequestParam("Id") Long commentId, HttpServletRequest request) {
-        return commentService.deleteComment(commentId, commentRequestDto, request, GameType.values()[gameType-1]);
+    public ResponseDto<?> deleteComment(@RequestParam("gameId") int gameType, @RequestParam("Id") Long commentId, HttpServletRequest request) {
+        return commentService.deleteComment(commentId, request, GameType.values()[gameType-1]);
     }
 
     // 댓글 보기
