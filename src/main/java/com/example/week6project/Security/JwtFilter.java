@@ -1,6 +1,6 @@
 package com.example.week6project.Security;
 
-import com.example.week6project.Service.UserDetailsServiceImpl;
+import com.example.week6project.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

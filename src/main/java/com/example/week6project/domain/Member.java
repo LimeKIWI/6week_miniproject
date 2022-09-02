@@ -2,9 +2,7 @@ package com.example.week6project.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Builder
@@ -36,6 +34,5 @@ public class Member {
 
     @Column
     private Enum userRole;
-
 
 }
