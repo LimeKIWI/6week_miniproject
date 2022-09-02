@@ -17,7 +17,7 @@ public class Member {
     private String id;
 
     @Column(nullable = false)
-    private String pw;
+    private String password;
 
     @Column(nullable = false)
     private String nickname;

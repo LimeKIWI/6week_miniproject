@@ -1,6 +1,6 @@
 package com.example.week6project.service;
 
-import com.example.week6project.Security.TokenProvider;
+import com.example.week6project.security.TokenProvider;
 import com.example.week6project.controller.request.CommentRequestDto;
 import com.example.week6project.controller.response.CommentResponseDto;
 import com.example.week6project.controller.response.ResponseDto;

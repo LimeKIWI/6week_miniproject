@@ -6,6 +6,7 @@ Content-Type: application/json
 {
   "id": "asdf",
   "pw": "asdf",
+  "birthDate" : 20030903,
   "nickname": "asdf"
 }
 
@@ -36,3 +37,10 @@ Content-Type: application/json
   "id": "asdf",
   "pw": "asdf"
 }
+
+###Test
+GET http://localhost:8080/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTI4MzAxfQ.SWJyczuYNUFjo9DyCQGoZdDEG2QMYs8sf1--3ZSSecs
+Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzEzMDF9.rxCLl1qPr7gZw8kIBiNZblqZIlgYr12oS-rDPNh9rJw
+accept: */*
+Content-Type: application/json

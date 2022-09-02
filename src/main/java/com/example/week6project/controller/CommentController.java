@@ -32,7 +32,7 @@ public class CommentController {
         return commentService.deleteComment(commentId, request, GameType.values()[gameType-1]);
     }
 
-    // 댓글 보기
+    // 댓글 보기!
     @RequestMapping(value = "/api/comment", method = RequestMethod.GET)
     public ResponseDto<?> getCommentList(@RequestParam("gameId") int gameType, HttpServletRequest request) {
         return commentService.getCommentList(request, GameType.values()[gameType-1]);
