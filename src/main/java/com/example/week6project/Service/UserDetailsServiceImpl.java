@@ -1,4 +1,4 @@
-package com.example.week6project.Service;
+package com.example.week6project.service;
 
 
 import com.example.week6project.domain.Member;
