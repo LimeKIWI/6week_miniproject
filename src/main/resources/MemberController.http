@@ -4,10 +4,10 @@ accept: */*
 Content-Type: application/json
 
 {
-  "id": "asd",
-  "password": "asd",
+  "id": "asdf",
+  "password": "asdf",
   "birthDate" : "20030903",
-  "nickname": "asd"
+  "nickname": "asdf"
 }
 
 ### signup2
@@ -142,8 +142,8 @@ Content-Type: application/json
 
 ###LottoTest1
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIzMDc1fQ.JVfYPmwxxK2a--M1KhgNlaEuhokzAv6z0nJPwlTRPLM
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTcwNzV9.52ri-2lNHhRnGzi-bydGM-RnAQUWORf8kKJCgJl9jR4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NjU2fQ.Y_oTg-OmNY-i3UUiw1pIZTF2BKY3CN3KNbiqGOI2p58
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg2NTZ9.Od4HdJiw_djUMy-zPcyt3z3xqlN_bcsTfHK4iJEM-Kk
 accept: */*
 Content-Type: application/json
 
@@ -157,8 +157,8 @@ Content-Type: application/json
 }
 ###LottoTest2
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIzMDc1fQ.JVfYPmwxxK2a--M1KhgNlaEuhokzAv6z0nJPwlTRPLM
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTcwNzV9.52ri-2lNHhRnGzi-bydGM-RnAQUWORf8kKJCgJl9jR4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NTY0fQ.xcym5fFlxNEwrgUxqanUo0Sm5pzdq-1JitU7WSdGUlE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg1NjR9._gY_zD2raHtaKqheePGYKgTAY6opqyhQ5cVrIdbpXYM
 accept: */*
 Content-Type: application/json
 
@@ -173,8 +173,8 @@ Content-Type: application/json
 
 ###LottoTest3
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIxNjQ0fQ.Vf2MTEYAOtI3MI2cFEDIjaP7RvceVYyCdVm8G2-NEYw
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTU2NDR9.R_GJ2cyp2ytSHIvug3JvBdoxGhEgVtcBOdqVlnh7XnA
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjMyOTQ0fQ.gBAXNlzNcBpT7OYKyuz-lrMbsCqhZF4e-TZ2R2KdgUo
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MjY5NDR9.m7lQY9T96tfaNW9yk9o9ftIRXzuLYVsC7_n6pPQyO-Q
 accept: */*
 Content-Type: application/json
 
@@ -188,6 +188,7 @@ Content-Type: application/json
 }
 
 
-###
+###LottoFinal
 GET http://localhost:8080/api/game/lottotest
 accept: */*
+

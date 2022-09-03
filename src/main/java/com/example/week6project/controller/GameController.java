@@ -7,10 +7,7 @@ import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.service.GameService;
 import com.example.week6project.service.LottoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,6 +42,7 @@ public class GameController {
     public ResponseDto<?> testLotto () {
         return lottoService.runLotto();
     }
+
 
     // 카운터
     @RequestMapping (value = "/api/game/counter", method = RequestMethod.POST)

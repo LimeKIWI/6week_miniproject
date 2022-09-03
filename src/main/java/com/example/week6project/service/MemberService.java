@@ -106,7 +106,7 @@ public class MemberService {
                 .nickname(requestDto.getNickname())
                 .birthDate(Integer.parseInt(requestDto.getBirthDate()))
                 .password(passwordEncoder.encode(requestDto.getPassword()))
-                .point(100)
+                .point(2000)
                 .userRole(ROLE_MEMBER)
                 .build();
         memberRepository.save(member);
