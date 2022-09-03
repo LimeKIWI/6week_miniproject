@@ -38,9 +38,34 @@ Content-Type: application/json
   "password": "asdf"
 }
 
+### oddtest
+POST http://localhost:8080/api/game/oddeven
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTk0NTMzfQ.uvrAKBKPhRMDoEzFw010JscHcZ2pwimRxJoO-n1NjcE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3ODg1MzN9.pbA2wuIIAvsVPaSSfsWJ8FDwDutXkuLJr30ZfodWUjc
+accept: */*
+Content-Type: application/json
+
+{
+  "point" : 10,
+  "number" : 1
+}
+
+### dicetest
+POST http://localhost:8080/api/game/dice
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTk0NTMzfQ.uvrAKBKPhRMDoEzFw010JscHcZ2pwimRxJoO-n1NjcE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3ODg1MzN9.pbA2wuIIAvsVPaSSfsWJ8FDwDutXkuLJr30ZfodWUjc
+accept: */*
+Content-Type: application/json
+
+{
+  "point" : 5,
+  "number" : 5
+}
+
+
 ###Test
 GET http://localhost:8080/test
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTI4MzAxfQ.SWJyczuYNUFjo9DyCQGoZdDEG2QMYs8sf1--3ZSSecs
-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzEzMDF9.rxCLl1qPr7gZw8kIBiNZblqZIlgYr12oS-rDPNh9rJw
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzEzMDF9.rxCLl1qPr7gZw8kIBiNZblqZIlgYr12oS-rDPNh9rJw
 accept: */*
 Content-Type: application/json
