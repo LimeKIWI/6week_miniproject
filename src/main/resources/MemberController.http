@@ -5,8 +5,8 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "pw": "asdf",
-  "birthDate" : 20030903,
+  "password": "asdf",
+  "birthDate" : "20030903",
   "nickname": "asdf"
 }
 
@@ -16,7 +16,7 @@ accept: */*
 Content-Type: application/json
 
 {
-  "idOrNickname": "adf"
+  "id": "asdf"
 }
 
 ### duplicateCheckNickname
@@ -25,7 +25,7 @@ accept: */*
 Content-Type: application/json
 
 {
-  "idOrNickname": "asdf"
+  "nickName": "asdf"
 }
 
 ### login
@@ -35,12 +35,13 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "pw": "asdf"
+  "password": "asdf"
 }
 
 ###Test
 GET http://localhost:8080/test
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTI4MzAxfQ.SWJyczuYNUFjo9DyCQGoZdDEG2QMYs8sf1--3ZSSecs
-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzEzMDF9.rxCLl1qPr7gZw8kIBiNZblqZIlgYr12oS-rDPNh9rJw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTQ0MjkyfQ.134GETuXldQByTKn6vKXMfhi4ctF-JShKO1Hgw1vt84
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzgyOTJ9.u2QzvlA1FnjFsqOYf4-eYEU5aQSXHuvu8luVTQvZ-HA
 accept: */*
 Content-Type: application/json
+
