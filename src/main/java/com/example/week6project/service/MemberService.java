@@ -1,8 +1,14 @@
 package com.example.week6project.service;
 
+import com.example.week6project.domain.results.DiceResult;
+import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.dto.TokenDto;
 import com.example.week6project.dto.requestDto.*;
 import com.example.week6project.dto.ResponseDto;
+import com.example.week6project.repository.results.CounterResultRepository;
+import com.example.week6project.repository.results.DiceResultRepository;
+import com.example.week6project.repository.results.LottoResultRepository;
+import com.example.week6project.repository.results.OddEvenResultRepository;
 import com.example.week6project.security.TokenProvider;
 import com.example.week6project.domain.Member;
 import com.example.week6project.repository.MemberRepository;
@@ -28,6 +34,11 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     private final TokenProvider tokenProvider;
+
+    private final OddEvenResultRepository oddEvenResultRepository;
+    private final DiceResultRepository diceResultRepository;
+    private final CounterResultRepository counterResultRepository;
+    private final LottoResultRepository lottoResultRepository;
 
     //아이디 중복 검사
     @Transactional
@@ -69,18 +80,40 @@ public class MemberService {
         else {return ResponseDto.success("성인 인증이 완료되었습니다.");
         }
     }
+
+    //결산테이블 생성
+    private void createResult(Member member) {
+        oddEvenResultRepository.save(OddEvenResult.builder()
+                .member(member)
+                .winCount(0)
+                .earnPoint(0)
+                .playCount(0)
+                .build());
+
+        diceResultRepository.save(DiceResult.builder()
+                .member(member)
+                .winCount(0)
+                .earnPoint(0)
+                .playCount(0)
+                .build());
+    }
+
     //회원가입
     @Transactional
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
-            Member member = Member.builder()
-                    .id(requestDto.getId())
-                    .nickname(requestDto.getNickname())
-                    .birthDate(Integer.parseInt(requestDto.getBirthDate()))
-                    .password(passwordEncoder.encode(requestDto.getPassword()))
-                    .point(100)
-                    .userRole(ROLE_MEMBER)
-                    .build();
-            memberRepository.save(member);
+        Member member = Member.builder()
+                .id(requestDto.getId())
+                .nickname(requestDto.getNickname())
+                .birthDate(Integer.parseInt(requestDto.getBirthDate()))
+                .password(passwordEncoder.encode(requestDto.getPassword()))
+                .point(100)
+                .userRole(ROLE_MEMBER)
+                .build();
+        memberRepository.save(member);
+
+        // 유저 결산테이블 초기화
+        createResult(member);
+
         return ResponseDto.success("회원가입 성공");
     }
 
@@ -101,7 +134,7 @@ public class MemberService {
 
         //헤더에 반환 to FE
         response.addHeader("Authorization","Bearer "+tokenDto.getAccessToken());
-        response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
+        response.addHeader("RefreshToken", tokenDto.getRefreshToken());
         response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
 
         return ResponseDto.success(member.getNickname());
