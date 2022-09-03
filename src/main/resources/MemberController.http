@@ -4,10 +4,10 @@ accept: */*
 Content-Type: application/json
 
 {
-  "id": "asdf",
-  "password": "asdf",
+  "id": "asd",
+  "password": "asd",
   "birthDate" : "20030903",
-  "nickname": "asdf"
+  "nickname": "asd"
 }
 
 ### duplicateCheckId
@@ -45,3 +45,54 @@ RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzgyOTJ9.u2QzvlA1FnjFsqOYf4-e
 accept: */*
 Content-Type: application/json
 
+###LottoTest1
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIzMDc1fQ.JVfYPmwxxK2a--M1KhgNlaEuhokzAv6z0nJPwlTRPLM
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTcwNzV9.52ri-2lNHhRnGzi-bydGM-RnAQUWORf8kKJCgJl9jR4
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 1,
+  "num2": 2,
+  "num3": 3,
+  "num4": 4,
+  "num5": 5,
+  "num6": 6
+}
+###LottoTest2
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIzMDc1fQ.JVfYPmwxxK2a--M1KhgNlaEuhokzAv6z0nJPwlTRPLM
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTcwNzV9.52ri-2lNHhRnGzi-bydGM-RnAQUWORf8kKJCgJl9jR4
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 1,
+  "num2": 2,
+  "num3": 3,
+  "num4": 4,
+  "num5": 5,
+  "num6": 7
+}
+
+###LottoTest3
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjIxNjQ0fQ.Vf2MTEYAOtI3MI2cFEDIjaP7RvceVYyCdVm8G2-NEYw
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MTU2NDR9.R_GJ2cyp2ytSHIvug3JvBdoxGhEgVtcBOdqVlnh7XnA
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 2,
+  "num2": 3,
+  "num3": 5,
+  "num4": 6,
+  "num5": 7,
+  "num6": 15
+}
+
+
+###
+GET http://localhost:8080/api/game/lottotest
+accept: */*
