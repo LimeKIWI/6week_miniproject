@@ -47,28 +47,40 @@ public class CommentService {
                         .content(commentRequestDto.getContent())
                         .build();
                 oddEvenCommentRepository.save(oddEvenComment);
-                return ResponseDto.success(oddEvenComment);
+                return ResponseDto.success(CommentResponseDto.builder()
+                        .nickName(oddEvenComment.getMember().getNickname())
+                        .content(commentRequestDto.getContent())
+                        .build());
             case "DICE":
                 DiceComment diceComment = DiceComment.builder()
                         .member(member)
                         .content(commentRequestDto.getContent())
                         .build();
                 diceCommentRepository.save(diceComment);
-                return ResponseDto.success(diceComment);
+                return ResponseDto.success(CommentResponseDto.builder()
+                        .nickName(diceComment.getMember().getNickname())
+                        .content(commentRequestDto.getContent())
+                        .build());
             case "LOTTO":
                 LottoComment lottoComment = LottoComment.builder()
                         .member(member)
                         .content(commentRequestDto.getContent())
                         .build();
                 lottoCommentRepository.save(lottoComment);
-                return ResponseDto.success(lottoComment);
+                return ResponseDto.success(CommentResponseDto.builder()
+                        .nickName(lottoComment.getMember().getNickname())
+                        .content(commentRequestDto.getContent())
+                        .build());
             case "COUNTER":
                 CounterComment counterComment = CounterComment.builder()
                         .member(member)
                         .content(commentRequestDto.getContent())
                         .build();
                 counterCommentRepository.save(counterComment);
-                return ResponseDto.success(counterComment);
+                return ResponseDto.success(CommentResponseDto.builder()
+                        .nickName(counterComment.getMember().getNickname())
+                        .content(commentRequestDto.getContent())
+                        .build());
         }
 
         return ResponseDto.fail("BAD_REQUEST_C","댓글 타입 오류");
