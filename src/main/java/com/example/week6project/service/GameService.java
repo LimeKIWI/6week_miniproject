@@ -24,7 +24,7 @@ public class GameService {
 
     // 배율 설정 (추후 ENUM으로 구현하여 관리자 페이지에서 배율 설정 할 수 있게 기능 구현 ?)
     static final int ODDEVEN_MAGNIFICATION = 2; // 홀짝 배율
-    static final int DICE_MAGNIFICATION = 3;    // 주사위 배율
+    static final int DICE_MAGNIFICATION = 8;    // 주사위 배율
 
     private final TokenProvider tokenProvider;
     private final OddEvenResultRepository oddEvenResultRepository;
@@ -69,6 +69,7 @@ public class GameService {
         int generateNum = (int)Math.floor(Math.random()*2);
         if(generateNum == oddEvenRequestDto.getNumber()) {
             result = "성공";
+            winCount = 1;
             point = bettingPoint* ODDEVEN_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
         }
@@ -88,6 +89,7 @@ public class GameService {
 
 
     // 주사위 게임
+    @Transactional
     public ResponseDto<?> runDice(DiceRequestDto diceRequestDto, HttpServletRequest request) {
         // 유저 로그인 체크
         ResponseDto<?> chkResponse =  validateCheck(request);
@@ -124,6 +126,7 @@ public class GameService {
         int generateNum = (int)Math.floor(Math.random()*6)+1;
         if(generateNum == diceRequestDto.getNumber()) {
             result = "성공";
+            winCount = 1;
             point = bettingPoint* DICE_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
         }
