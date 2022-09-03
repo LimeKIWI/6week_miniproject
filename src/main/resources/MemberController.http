@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "pw": "asdf",
+  "password": "asdf",
   "birthDate" : 20030903,
   "nickname": "asdf"
 }
@@ -16,7 +16,7 @@ accept: */*
 Content-Type: application/json
 
 {
-  "idOrNickname": "adf"
+  "id": "asdf"
 }
 
 ### duplicateCheckNickname
@@ -25,7 +25,7 @@ accept: */*
 Content-Type: application/json
 
 {
-  "idOrNickname": "asdf"
+  "nickName": "asdf"
 }
 
 ### login
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "pw": "asdf"
+  "password": "asdf"
 }
 
 ###Test

@@ -92,7 +92,7 @@ public class MemberService {
             return ResponseDto.fail("Not Found Member","존재하지 않는 ID입니다.");
         }
 
-        if(!validatePassword(requestDto.getId(), requestDto.getPw())){
+        if(!validatePassword(requestDto.getId(), requestDto.getPassword())){
             return ResponseDto.fail("Wrong Password","잘못된 비밀번호 입니다.");
         }
 
