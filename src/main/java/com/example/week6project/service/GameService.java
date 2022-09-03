@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class GameService {
 
     // 배율 설정 (추후 ENUM으로 구현하여 관리자 페이지에서 배율 설정 할 수 있게 기능 구현 ?)
     static final int ODDEVEN_MAGNIFICATION = 2; // 홀짝 배율
-    static final int DICE_MAGNIFICATION = 3;    // 주사위 배율
+    static final int DICE_MAGNIFICATION = 8;    // 주사위 배율
 
     private final TokenProvider tokenProvider;
     private final OddEvenResultRepository oddEvenResultRepository;
@@ -38,7 +37,7 @@ public class GameService {
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
-        Member member = (Member)chkResponse.getData();
+        Member member = (Member)chkResponse.getData();  // 이 맴버객체로 처리시 동작 x
         // 유저 테이블에서 유저객체 가져오기
         Member updateMember = memberRepository.findById(member.getId()).get();
 
@@ -57,11 +56,7 @@ public class GameService {
 
 
         // 유저결산테이블 확인
-        Optional<OddEvenResult> findResult = oddEvenResultRepository.findByMember(member);
-        if (findResult.isEmpty())
-            return ResponseDto.fail("NOT_FOUND_INFO_ODDEVEN", "유저 결산정보 에러");
-        OddEvenResult oddEvenResult = findResult.get();
-
+        OddEvenResult oddEvenResult = oddEvenResultRepository.findByMember(member);
 
         // 게임시작
         int winCount = 0, point = 0;
@@ -69,6 +64,7 @@ public class GameService {
         int generateNum = (int)Math.floor(Math.random()*2);
         if(generateNum == oddEvenRequestDto.getNumber()) {
             result = "성공";
+            winCount = 1;
             point = bettingPoint* ODDEVEN_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
         }
@@ -88,6 +84,7 @@ public class GameService {
 
 
     // 주사위 게임
+    @Transactional
     public ResponseDto<?> runDice(DiceRequestDto diceRequestDto, HttpServletRequest request) {
         // 유저 로그인 체크
         ResponseDto<?> chkResponse =  validateCheck(request);
@@ -112,10 +109,7 @@ public class GameService {
 
 
         // 유저결산테이블 확인
-        Optional<DiceResult> findResult = diceResultRepository.findByMember(member);
-        if (findResult.isEmpty())
-            return ResponseDto.fail("NOT_FOUND_INFO_ODDEVEN", "유저 결산정보 에러");
-        DiceResult diceResult = findResult.get();
+        DiceResult diceResult = diceResultRepository.findByMember(member);
 
 
         // 게임 시작
@@ -124,6 +118,7 @@ public class GameService {
         int generateNum = (int)Math.floor(Math.random()*6)+1;
         if(generateNum == diceRequestDto.getNumber()) {
             result = "성공";
+            winCount = 1;
             point = bettingPoint* DICE_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
         }
