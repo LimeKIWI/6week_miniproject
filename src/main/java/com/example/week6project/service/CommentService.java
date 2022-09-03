@@ -10,10 +10,10 @@ import com.example.week6project.domain.comments.CounterComment;
 import com.example.week6project.domain.comments.DiceComment;
 import com.example.week6project.domain.comments.LottoComment;
 import com.example.week6project.domain.comments.OddEvenComment;
-import com.example.week6project.repository.CounterCommentRepository;
-import com.example.week6project.repository.DiceCommentRepository;
-import com.example.week6project.repository.LottoCommentRepository;
-import com.example.week6project.repository.OddEvenCommentRepository;
+import com.example.week6project.repository.comments.CounterCommentRepository;
+import com.example.week6project.repository.comments.DiceCommentRepository;
+import com.example.week6project.repository.comments.LottoCommentRepository;
+import com.example.week6project.repository.comments.OddEvenCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -255,7 +255,7 @@ public class CommentService {
     }
 
     private ResponseDto<?> validateCheck(HttpServletRequest request) {
-        if(null == request.getHeader("Refresh-Token") || null == request.getHeader("Authorization")) {
+        if(null == request.getHeader("RefreshToken") || null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
         }
         Member member = validateMember(request);
@@ -267,7 +267,7 @@ public class CommentService {
 
     @Transactional
     public Member validateMember(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("RefreshToken"))) {
             return null;
         }
         return tokenProvider.getMemberFromAuthentication();
