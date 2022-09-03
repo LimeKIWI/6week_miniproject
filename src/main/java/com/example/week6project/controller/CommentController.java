@@ -23,12 +23,12 @@ public class CommentController {
 
     // 댓글 수정
     @RequestMapping(value = "/api/comment", method = RequestMethod.PATCH)
-    public ResponseDto<?> updateComment(@RequestBody CommentRequestDto commentRequestDto, @RequestParam("gameId") int gameType, @RequestParam("Id") Long commentId,  HttpServletRequest request) {
+    public ResponseDto<?> updateComment(@RequestBody CommentRequestDto commentRequestDto, @RequestParam("gameId") int gameType, @RequestParam("id") Long commentId,  HttpServletRequest request) {
         return commentService.updateComment(commentId, commentRequestDto, request, GameType.values()[gameType-1]);
     }
     // 댓글 삭제
     @RequestMapping(value = "/api/comment", method = RequestMethod.DELETE)
-    public ResponseDto<?> deleteComment(@RequestParam("gameId") int gameType, @RequestParam("Id") Long commentId, HttpServletRequest request) {
+    public ResponseDto<?> deleteComment(@RequestParam("gameId") int gameType, @RequestParam("id") Long commentId, HttpServletRequest request) {
         return commentService.deleteComment(commentId, request, GameType.values()[gameType-1]);
     }
 
