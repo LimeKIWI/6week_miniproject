@@ -38,4 +38,8 @@ public class Member {
     public void addPoint(int point) {
         this.point += point;
     }
+
+    public void addProfileImg(String url) {
+        this.img = url;
+    }
 }

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class GameService {
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
-        Member member = (Member)chkResponse.getData();
+        Member member = (Member)chkResponse.getData();  // 이 맴버객체로 처리시 동작 x
         // 유저 테이블에서 유저객체 가져오기
         Member updateMember = memberRepository.findById(member.getId()).get();
 
@@ -57,11 +56,7 @@ public class GameService {
 
 
         // 유저결산테이블 확인
-        Optional<OddEvenResult> findResult = oddEvenResultRepository.findByMember(member);
-        if (findResult.isEmpty())
-            return ResponseDto.fail("NOT_FOUND_INFO_ODDEVEN", "유저 결산정보 에러");
-        OddEvenResult oddEvenResult = findResult.get();
-
+        OddEvenResult oddEvenResult = oddEvenResultRepository.findByMember(member);
 
         // 게임시작
         int winCount = 0, point = 0;
@@ -114,10 +109,7 @@ public class GameService {
 
 
         // 유저결산테이블 확인
-        Optional<DiceResult> findResult = diceResultRepository.findByMember(member);
-        if (findResult.isEmpty())
-            return ResponseDto.fail("NOT_FOUND_INFO_ODDEVEN", "유저 결산정보 에러");
-        DiceResult diceResult = findResult.get();
+        DiceResult diceResult = diceResultRepository.findByMember(member);
 
 
         // 게임 시작

@@ -10,6 +10,19 @@ Content-Type: application/json
   "nickname": "asdf"
 }
 
+### signup2
+POST http://localhost:8080/api/member/signup
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf2",
+  "password": "asdf2",
+  "birthDate" : 20131111,
+  "nickname": "asdf2"
+}
+
+
 ### duplicateCheckId
 POST http://localhost:8080/api/member/chkId
 accept: */*
@@ -38,10 +51,20 @@ Content-Type: application/json
   "password": "asdf"
 }
 
+### login2
+POST http://localhost:8080/api/member/login
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf2",
+  "password": "asdf2"
+}
+
 ### oddtest
 POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTk0NTMzfQ.uvrAKBKPhRMDoEzFw010JscHcZ2pwimRxJoO-n1NjcE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3ODg1MzN9.pbA2wuIIAvsVPaSSfsWJ8FDwDutXkuLJr30ZfodWUjc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA4MjE2fQ.d1C_dCmJIBOEO2J2rczwpH4crVusCNWX3CJA28U1nFQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIyMTZ9.3rj1LH-dIpxqo-4Jt8-1MAh8AUwE3b_QWHhCsdu-_T0
 accept: */*
 Content-Type: application/json
 
@@ -52,8 +75,8 @@ Content-Type: application/json
 
 ### dicetest
 POST http://localhost:8080/api/game/dice
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTk0NTMzfQ.uvrAKBKPhRMDoEzFw010JscHcZ2pwimRxJoO-n1NjcE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3ODg1MzN9.pbA2wuIIAvsVPaSSfsWJ8FDwDutXkuLJr30ZfodWUjc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA3MzQ3fQ.JdUqNwcRXoUxojA-zufoH_W4Zragl5Gi2Uv5dWpO_Ug
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDEzNDd9.Z2W9UCQsZAALGUZVAamA94-10OCgLzMEjd-Dwsk0CdM
 accept: */*
 Content-Type: application/json
 
@@ -62,10 +85,52 @@ Content-Type: application/json
   "number" : 5
 }
 
+### commentPostTest
+POST http://localhost:8080/api/comment?gameId=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA4MjE2fQ.d1C_dCmJIBOEO2J2rczwpH4crVusCNWX3CJA28U1nFQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIyMTZ9.3rj1LH-dIpxqo-4Jt8-1MAh8AUwE3b_QWHhCsdu-_T0
+accept: */*
+Content-Type: application/json
+
+{
+  "content" : "내용입니다."
+}
+
+### commentGetTest
+GET http://localhost:8080/api/comment?gameId=4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA3MzQ3fQ.JdUqNwcRXoUxojA-zufoH_W4Zragl5Gi2Uv5dWpO_Ug
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDEzNDd9.Z2W9UCQsZAALGUZVAamA94-10OCgLzMEjd-Dwsk0CdM
+accept: */*
+
+
+### commentPatchTest
+PATCH http://localhost:8080/api/comment?gameId=1&id=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA3MzQ3fQ.JdUqNwcRXoUxojA-zufoH_W4Zragl5Gi2Uv5dWpO_Ug
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDEzNDd9.Z2W9UCQsZAALGUZVAamA94-10OCgLzMEjd-Dwsk0CdM
+accept: */*
+Content-Type: application/json
+
+{
+  "content" : "내용입니다2."
+}
+
+### commentDeleteTest
+DELETE http://localhost:8080/api/comment?gameId=1&id=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA3MzQ3fQ.JdUqNwcRXoUxojA-zufoH_W4Zragl5Gi2Uv5dWpO_Ug
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDEzNDd9.Z2W9UCQsZAALGUZVAamA94-10OCgLzMEjd-Dwsk0CdM
+accept: */*
+
+
+### myPageTest
+GET http://localhost:8080/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjIwODMyOH0.dDQRX5zTMFReyYrA4GshPXz2InptioT1PkWEQ6BIYtI
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIzMjh9.3U21jJR9ojiPlOQK2Ey5Wm62sqgLAyRc2-odX5jZNd0
+accept: */*
+
 
 ###Test
 GET http://localhost:8080/test
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTI4MzAxfQ.SWJyczuYNUFjo9DyCQGoZdDEG2QMYs8sf1--3ZSSecs
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzEzMDF9.rxCLl1qPr7gZw8kIBiNZblqZIlgYr12oS-rDPNh9rJw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA4MjE2fQ.d1C_dCmJIBOEO2J2rczwpH4crVusCNWX3CJA28U1nFQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIyMTZ9.3rj1LH-dIpxqo-4Jt8-1MAh8AUwE3b_QWHhCsdu-_T0
 accept: */*
 Content-Type: application/json
