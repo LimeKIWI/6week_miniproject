@@ -86,7 +86,7 @@ Content-Type: application/json
 }
 
 ### commentPostTest
-POST http://localhost:8080/api/comment?gameId=3
+POST http://localhost:8080/api/comment?gameId=2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
 RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
 accept: */*
@@ -97,7 +97,7 @@ Content-Type: application/json
 }
 
 ### commentGetTest
-GET http://localhost:8080/api/comment?gameId=3
+GET http://localhost:8080/api/comment?gameId=4
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
 RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
 accept: */*
@@ -123,8 +123,8 @@ accept: */*
 
 ### myPageTest
 GET http://localhost:8080/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjIwODMyOH0.dDQRX5zTMFReyYrA4GshPXz2InptioT1PkWEQ6BIYtI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIzMjh9.3U21jJR9ojiPlOQK2Ey5Wm62sqgLAyRc2-odX5jZNd0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxOTMwfQ.PbVON6m7NXXkzNiIW_Ji3wDqwsQ4XDE11nEITA2e79Y
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODU5MzB9.N-3n3QSg7fX_Je9JeHlwojN0Rur0CpamEI5qAYmIByw
 accept: */*
 
 
