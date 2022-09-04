@@ -17,10 +17,10 @@ public class Member {
     private String id;
 
     @Column(nullable = false)
-    private String password;
+    private String passWord;
 
     @Column(nullable = false)
-    private String nickname;
+    private String nickName;
 
     @Column
     private int totalWinCount;

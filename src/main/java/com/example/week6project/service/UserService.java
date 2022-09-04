@@ -4,9 +4,7 @@ import com.example.week6project.controller.response.MyPageResponseDto;
 import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.ImageMapper;
 import com.example.week6project.domain.Member;
-import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
-import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.repository.MemberRepository;
 import com.example.week6project.repository.results.CounterResultRepository;
@@ -47,7 +45,7 @@ public class UserService {
 
         MyPageResponseDto myPageResponseDto = MyPageResponseDto.builder()
                 .id(member.getId())
-                .nickName(member.getNickname())
+                .nickName(member.getNickName())
                 .point(member.getPoint())
                 .winCountOfOddEven(oddEvenResult.getWinCount())
                 .winCountOfDice(diceResult.getWinCount())
