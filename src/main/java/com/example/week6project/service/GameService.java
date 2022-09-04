@@ -52,7 +52,7 @@ public class GameService {
             return ResponseDto.fail("BET_POINT_ERR","소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
         if(updateMember.getPoint() <= 0)
             return ResponseDto.fail("ZERO_POINT","모든 포인트를 잃으셨습니다");
-        updateMember.addPoint((bettingPoint*-1));   // 배팅한 포인트 차감
+        updateMember.addPoint((bettingPoint*-1), 0);   // 배팅한 포인트 차감
 
 
         // 유저결산테이블 확인
@@ -66,7 +66,7 @@ public class GameService {
             result = "성공";
             winCount = 1;
             point = bettingPoint* ODDEVEN_MAGNIFICATION;
-            updateMember.addPoint(point);       // 이겼다면 포인트 추가
+            updateMember.addPoint(point, winCount);       // 이겼다면 포인트 추가
         }
         oddEvenResult.result(winCount,point);   // 포인트및 결과 저장
 
@@ -105,7 +105,7 @@ public class GameService {
             return ResponseDto.fail("BET_POINT_ERR","소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
         if(updateMember.getPoint() <= 0)
             return ResponseDto.fail("ZERO_POINT","모든 포인트를 잃으셨습니다");
-        updateMember.addPoint((bettingPoint*-1));   // 배팅한 포인트 차감
+        updateMember.addPoint((bettingPoint*-1), 0);   // 배팅한 포인트 차감
 
 
         // 유저결산테이블 확인
@@ -120,7 +120,7 @@ public class GameService {
             result = "성공";
             winCount = 1;
             point = bettingPoint* DICE_MAGNIFICATION;
-            updateMember.addPoint(point);       // 이겼다면 포인트 추가
+            updateMember.addPoint(point, winCount);       // 이겼다면 포인트 추가
         }
         diceResult.result(winCount,point);   // 포인트및 결과 저장
 
@@ -136,7 +136,7 @@ public class GameService {
 
     }
 
-    ResponseDto<?> validateCheck(HttpServletRequest request) {
+    public ResponseDto<?> validateCheck(HttpServletRequest request) {
         if(null == request.getHeader("RefreshToken") || null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
         }

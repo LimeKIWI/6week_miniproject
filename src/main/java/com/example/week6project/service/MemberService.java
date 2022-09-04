@@ -103,10 +103,11 @@ public class MemberService {
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
         Member member = Member.builder()
                 .id(requestDto.getId())
-                .nickname(requestDto.getNickname())
+                .nickName(requestDto.getNickName())
                 .birthDate(Integer.parseInt(requestDto.getBirthDate()))
-                .password(passwordEncoder.encode(requestDto.getPassword()))
-                .point(2000)
+                .passWord(passwordEncoder.encode(requestDto.getPassWord()))
+                .totalWinCount(0)
+                .point(100)
                 .userRole(ROLE_MEMBER)
                 .build();
         memberRepository.save(member);
@@ -125,7 +126,7 @@ public class MemberService {
             return ResponseDto.fail("Not Found Member","존재하지 않는 ID입니다.");
         }
 
-        if(!validatePassword(requestDto.getId(), requestDto.getPassword())){
+        if(!validatePassword(requestDto.getId(), requestDto.getPassWord())){
             return ResponseDto.fail("Wrong Password","잘못된 비밀번호 입니다.");
         }
 
@@ -137,7 +138,7 @@ public class MemberService {
         response.addHeader("RefreshToken", tokenDto.getRefreshToken());
         response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
 
-        return ResponseDto.success(member.getNickname());
+        return ResponseDto.success(member.getNickName());
     }
 
     // ID로 유저 조회(Only One)
@@ -148,12 +149,12 @@ public class MemberService {
 
     // 닉네임으로 유저 조회(Only One)
     private Member isPresentMemberByNickname(String nickname) {
-        Optional<Member> member=memberRepository.findByNickname(nickname);
+        Optional<Member> member=memberRepository.findByNickName(nickname);
         return member.orElse(null);
     }
 
     private boolean validatePassword(String id,String pw){
-        String MemberPw = isPresentMemberById(id).getPassword();
+        String MemberPw = isPresentMemberById(id).getPassWord();
         return passwordEncoder.matches(pw,MemberPw);
     }
 
