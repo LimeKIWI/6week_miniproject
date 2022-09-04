@@ -5,9 +5,9 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "password": "asdf",
+  "passWord": "asdf",
   "birthDate" : "20030903",
-  "nickname": "asdf"
+  "nickName": "asdf"
 }
 
 ### signup2
@@ -63,8 +63,8 @@ Content-Type: application/json
 
 ### oddtest
 POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3NDUwfQ.Bwce5yvxZz6qu5P65cQo5M6p1KKgTSk9611JHwUK5-8
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODE0NTB9.dx2LhMNdswvKlTw6njZTGNuGtjobLdByQ9PGZ21-oT0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
 accept: */*
 Content-Type: application/json
 
@@ -87,8 +87,8 @@ Content-Type: application/json
 
 ### commentPostTest
 POST http://localhost:8080/api/comment?gameId=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3NDUwfQ.Bwce5yvxZz6qu5P65cQo5M6p1KKgTSk9611JHwUK5-8
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODE0NTB9.dx2LhMNdswvKlTw6njZTGNuGtjobLdByQ9PGZ21-oT0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
 accept: */*
 Content-Type: application/json
 
@@ -98,8 +98,8 @@ Content-Type: application/json
 
 ### commentGetTest
 GET http://localhost:8080/api/comment?gameId=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3NDUwfQ.Bwce5yvxZz6qu5P65cQo5M6p1KKgTSk9611JHwUK5-8
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODE0NTB9.dx2LhMNdswvKlTw6njZTGNuGtjobLdByQ9PGZ21-oT0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
 accept: */*
 
 
