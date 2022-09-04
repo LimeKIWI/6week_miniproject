@@ -81,12 +81,12 @@ public class LottoService {
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
 
-        int[] luckNum=luckyNum();
-        lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum());
-        checkLotto(lastId,luckNum);
+        int[] luckyNum=luckyNum();
+        lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum);
+        checkLotto(lastId,luckyNum);
         LottoResponseDto temp_dto = lottoFinal(lastId);
         LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
-                .num(luckyNum())
+                .num(luckyNum)
                 .member1st(temp_dto.getMember1st())
                 .member2rd(temp_dto.getMember2rd())
                 .member3nd(temp_dto.getMember3nd())

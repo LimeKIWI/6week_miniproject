@@ -1,6 +1,7 @@
 package com.example.week6project.service;
 
 import com.example.week6project.domain.results.DiceResult;
+import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.dto.TokenDto;
 import com.example.week6project.dto.requestDto.*;
@@ -93,6 +94,17 @@ public class MemberService {
         diceResultRepository.save(DiceResult.builder()
                 .member(member)
                 .winCount(0)
+                .earnPoint(0)
+                .playCount(0)
+                .build());
+
+        lottoResultRepository.save(LottoResult.builder()
+                .member(member)
+                .coutn1st(0)
+                .coutn2nd(0)
+                .coutn3rd(0)
+                .coutn4th(0)
+                .coutn5th(0)
                 .earnPoint(0)
                 .playCount(0)
                 .build());
