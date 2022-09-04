@@ -5,9 +5,9 @@ Content-Type: application/json
 
 {
   "id": "asdf",
-  "passWord": "asdf",
-  "birthDate" : 20030903,
-  "nickName": "asdf"
+  "password": "asdf",
+  "birthDate" : "20030903",
+  "nickname": "asdf"
 }
 
 ### signup2
@@ -18,7 +18,7 @@ Content-Type: application/json
 {
   "id": "asdf2",
   "passWord": "asdf2",
-  "birthDate" : 20131111,
+  "birthDate" : "20131111",
   "nickName": "asdf2"
 }
 
