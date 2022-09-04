@@ -142,8 +142,8 @@ Content-Type: application/json
 
 ###LottoTest1
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NjU2fQ.Y_oTg-OmNY-i3UUiw1pIZTF2BKY3CN3KNbiqGOI2p58
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg2NTZ9.Od4HdJiw_djUMy-zPcyt3z3xqlN_bcsTfHK4iJEM-Kk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3MzMxfQ.kQFbVQUi_rQxxg7eKy-tnaL0Jod1ddqWhkvY_K-kBFs
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODEzMzF9.LnKHJpJDuV2h9LR5lNqMpD5WJ7sucz2TdHi9Jmxxy8Y
 accept: */*
 Content-Type: application/json
 
@@ -157,8 +157,8 @@ Content-Type: application/json
 }
 ###LottoTest2
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NTY0fQ.xcym5fFlxNEwrgUxqanUo0Sm5pzdq-1JitU7WSdGUlE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg1NjR9._gY_zD2raHtaKqheePGYKgTAY6opqyhQ5cVrIdbpXYM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3MzMxfQ.kQFbVQUi_rQxxg7eKy-tnaL0Jod1ddqWhkvY_K-kBFs
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODEzMzF9.LnKHJpJDuV2h9LR5lNqMpD5WJ7sucz2TdHi9Jmxxy8Y
 accept: */*
 Content-Type: application/json
 

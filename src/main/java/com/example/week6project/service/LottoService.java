@@ -80,10 +80,11 @@ public class LottoService {
     @Transactional
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
-        int startId=findStartId(); // 로또 구매자 테이블에서 시작하는 ID찾기
-        luckyNum();
-        checkLotto(startId);
-        LottoResponseDto temp_dto = lottoFinal(startId,lastId);
+
+        int[] luckNum=luckyNum();
+        lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum());
+        checkLotto(lastId,luckNum);
+        LottoResponseDto temp_dto = lottoFinal(lastId);
         LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
                 .num(luckyNum())
                 .member1st(temp_dto.getMember1st())
@@ -98,6 +99,26 @@ public class LottoService {
     @Transactional
     // 제출 번호 저장 및 당첨금 설정
     public ResponseDto<?> saveNum(LottoRequestDto lottoRequestDto, HttpServletRequest request){
+        long lastId=lottoServerRepository.count();
+        if(lastId==0){
+            LottoServer nextLottoServer= LottoServer.builder()
+                    .point(3000)
+                    .luckyNum1(0)
+                    .luckyNum2(0)
+                    .luckyNum3(0)
+                    .luckyNum4(0)
+                    .luckyNum4(0)
+                    .luckyNum5(0)
+                    .luckyNum6(0)
+                    .point1st(0)
+                    .point2nd(0)
+                    .point3rd(0)
+                    .build();
+
+            lottoServerRepository.save(nextLottoServer);
+            lastId=1;
+        }
+        LottoServer nowSever=lottoServerRepository.findById(lastId).get();
         ResponseDto<?> chkResponse = gameService.validateCheck(request);
         if (!chkResponse.isSuccess())
             return chkResponse;
@@ -111,6 +132,7 @@ public class LottoService {
         }
         Lotto lotto = Lotto.builder()
                 .member(member)
+                .lottoServer(nowSever)
                 .num1(lottoRequestDto.getNum1())
                 .num2(lottoRequestDto.getNum2())
                 .num3(lottoRequestDto.getNum3())
@@ -131,9 +153,7 @@ public class LottoService {
 
 
 
-        long lastId=lottoServerRepository.count();
-        LottoServer lottoServer = lottoServerRepository.findById(lastId).get();
-        lottoServer.plusPoint(lottoPoint);
+        nowSever.plusPoint(lottoPoint);
 
         lottoRepository.save(lotto);
         return ResponseDto.success(numList);
@@ -160,23 +180,21 @@ public class LottoService {
 
     // 맞은 갯수 확인
     @Transactional
-    public void checkLotto(int startId){
-        // 번호 추첨
-        int[] luckyNum = luckyNum();
-        // 맞은 갯수 확인
-        for (int i = startId; i < lottoRepository.count()+startId ; i++) {
-            long l = i;
-        Lotto lotto = lottoRepository.findById(l).get();
+    public void checkLotto(long lastid,int[] luckyNum){
+        List<Lotto> lottoList=lottoRepository.findByLottoServerId(lastid);
+        for (int i = 0; i < lottoList.size(); i++) {
+            Lotto lotto=lottoList.get(i);
             for (int j = 0; j < 6; j++) {
                 if(lotto.getNum1()==luckyNum[j]||lotto.getNum2()==luckyNum[j]||lotto.getNum3()==luckyNum[j]||lotto.getNum4()==luckyNum[j]||lotto.getNum5()==luckyNum[j]||lotto.getNum6()==luckyNum[j]){
-                    System.out.println(lotto.getNum1());
-                    lotto.plusOne();
-                    System.out.println(lotto.getResult());
+                        lotto.plusOne();
                 }
             }
             if (lotto.getNum1()==luckyNum[6]||lotto.getNum2()==luckyNum[6]||lotto.getNum3()==luckyNum[6]||lotto.getNum4()==luckyNum[6]||lotto.getNum5()==luckyNum[6]||lotto.getNum6()==luckyNum[6]){
                 lotto.plusBonus();
             }
+            System.out.println(lotto.getResult());
+            lotto.rank();
+            System.out.println(lotto.getResult());
         }
     }
 
@@ -185,16 +203,18 @@ public class LottoService {
     6= 1등
     15= 2등
     5= 3등
-    4= 4등
-    3= 5등
+    4.14= 4등
+    3,13= 5등
+    else =6등(꽝)
      */
 
 
     // 정산
     @Transactional
-    public LottoResponseDto lottoFinal(int startId,long lastId){
+    public LottoResponseDto lottoFinal(long lastId){
+        List<Lotto> lottoList=lottoRepository.findByLottoServerId(lastId);
         //구매자가 0명일때
-        if(startId==0){
+        if(lottoList.size()==0){
             LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
                     .money1st(0)
                     .member1st(0)
@@ -209,11 +229,11 @@ public class LottoService {
             long totalPoint=lottoServer.getPoint();
 
             // 등수 확인
-            List<Lotto> count1st = lottoRepository.findByResult(6);
-            List<Lotto> count2nd = lottoRepository.findByResult(15);
-            List<Lotto> count3rd = lottoRepository.findByResult(5);
+            List<Lotto> count1st = lottoRepository.findByResult(1);
+            List<Lotto> count2nd = lottoRepository.findByResult(2);
+            List<Lotto> count3rd = lottoRepository.findByResult(3);
             List<Lotto> count4th = lottoRepository.findByResult(4);
-            List<Lotto> count5th = lottoRepository.findByResult(3);
+            List<Lotto> count5th = lottoRepository.findByResult(5);
 
 
 
@@ -223,8 +243,6 @@ public class LottoService {
             long point3rd = (long) (totalPoint * 0.125);// +200,000
             long point4th = lottoPoint * 20;
             long point5th = lottoPoint * 5;
-
-            int index=0;
 
             // 당첨금액 분할시 0으로 나누어지는 오류 사전 방지
             if (count1st.size() != 0) {
@@ -240,54 +258,45 @@ public class LottoService {
             }
 
             // 1등부터 당첨금 정산, 구매 총액에서 정산후 남은 금액은 다음 회차로 이월
-            index=0;
-            for (int i = startId; i < count1st.size() + startId; i++) {
-
-                Member member = count1st.get(index).getMember();
+            for (int i = 0; i < count1st.size(); i++) {
+                Member member = count1st.get(i).getMember();
                 member.addPoint((int) point1st);
                 member.addPoint((int) 15000000/count1st.size());
                 lottoServer.plusPoint((int)-point1st);
                 totalPoint -= point1st;
-                index+=1;
             }
 
-            index=0;
-            for (int i = startId; i < count2nd.size() + startId; i++) {
-                Member member = count2nd.get(index).getMember();
+            for (int i = 0; i < count2nd.size(); i++) {
+                Member member = count2nd.get(i).getMember();
                 member.addPoint((int) point2nd);
                 member.addPoint((int) 3000000/count2nd.size());
                 lottoServer.plusPoint((int)-point2nd);
                 totalPoint -= point2nd;
-                index+=1;
             }
 
-            index=0;
-            for (int i = startId; i < count3rd.size() + startId; i++) {
-                Member member = count3rd.get(index).getMember();
+            for (int i = 0; i < count3rd.size(); i++) {
+                Member member = count3rd.get(i).getMember();
                 member.addPoint((int) point3rd);
                 member.addPoint((int) 200000/count3rd.size());
                 lottoServer.plusPoint((int)-point3rd);
                 totalPoint -= point3rd;
-                index+=1;
             }
 
-            index=0;
-            for (int i = startId; i < count4th.size() + startId; i++) {
-                Member member = count4th.get(index).getMember();
+            for (int i = 0; i < count4th.size(); i++) {
+                Member member = count4th.get(i).getMember();
                 member.addPoint((int)point4th);
-                index+=1;
             }
 
-            index=0;
-            for (int i = startId; i < count5th.size() + startId; i++) {
-                Member member = count5th.get(index).getMember();
+            for (int i = 0; i < count5th.size(); i++) {
+                Member member = count5th.get(i).getMember();
                 member.addPoint((int)point5th);
-                index+=1;
             }
+
             int firstMan=1;
             if(count1st.size()!=0){
                 firstMan=count1st.size();
             }
+
             LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
                     .money1st((int) point1st+15000000/firstMan)
                     .member1st(count1st.size())
@@ -298,32 +307,23 @@ public class LottoService {
             // +남은 totalPoint는 DB에 저장
             LottoServer nextLottoServer= LottoServer.builder()
                     .point((int) totalPoint)
+                    .luckyNum1(0)
+                    .luckyNum2(0)
+                    .luckyNum3(0)
+                    .luckyNum4(0)
+                    .luckyNum4(0)
+                    .luckyNum5(0)
+                    .luckyNum6(0)
+                    .point1st(0)
+                    .point2nd(0)
+                    .point3rd(0)
                     .build();
 
             lottoServerRepository.save(nextLottoServer);
 
             // 로또 구매 DB초기화
-            lottoRepository.deleteAll();
             return lottoResponseDto;
         }
-    }
-
-    //LottoRepo에서 첫 Id(Id의 최솟값) 찾기 ->DB에 deleteall을 적용해도 Id는 1이아닌 삭제된 Id이후부터 시작
-    public int findStartId(){
-        long temp_id=0;
-        boolean checkId=false;
-        if(lottoRepository.count()!=0){
-            while (checkId==false){
-                if(!lottoRepository.existsById(temp_id)){
-                    temp_id+=1;
-                }
-                else {
-                    checkId=true;
-                }
-            }
-        }
-        int startId=(int) temp_id;
-        return startId;
     }
 
     public boolean timeCheck(){
