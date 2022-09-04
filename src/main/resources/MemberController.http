@@ -142,8 +142,8 @@ Content-Type: application/json
 
 ###LottoTest1
 POST http://localhost:8080/api/game/lotto
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3MzMxfQ.kQFbVQUi_rQxxg7eKy-tnaL0Jod1ddqWhkvY_K-kBFs
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODEzMzF9.LnKHJpJDuV2h9LR5lNqMpD5WJ7sucz2TdHi9Jmxxy8Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkwNjEwfQ.F-Tdi545ygmIBRNJwpmrqKhgRSiFAfQrtIgxmCNJMkk
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODQ2MTB9.NIH0Kmt_ddw5lHP-R37Y7WNe5u_GPPXrfuJ387BrNAQ
 accept: */*
 Content-Type: application/json
 
