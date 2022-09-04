@@ -52,7 +52,7 @@ public class MemberService {
         }
 
         else {
-            return ResponseDto.success("success");
+            return ResponseDto.success("사용 가능한 아이디 입니다.");
         }
     }
 
@@ -67,7 +67,7 @@ public class MemberService {
         }
 
         else {
-            return ResponseDto.success("success");
+            return ResponseDto.success("사용 가능한 닉네임 입니다.");
         }
     }
     // 성인인증

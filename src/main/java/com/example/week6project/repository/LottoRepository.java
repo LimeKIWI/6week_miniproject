@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface LottoRepository extends JpaRepository<Lotto, Long> {
     List<Lotto> findByResult(long result);
+
+    List<Lotto> findByLottoServerId(long lastid);
 }

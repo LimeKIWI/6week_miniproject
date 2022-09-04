@@ -75,18 +75,11 @@ public class LottoService {
     */
 
 
-    @Transactional
-    public void createLottoServer() {
-        LottoServer lottoServer = new LottoServer(1L, 1000);
-        lottoServerRepository.save(lottoServer);
-    }
 
     //매시 00분 실행
     @Transactional
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
-        if(lastId == 0)
-            createLottoServer();
         int startId=findStartId(); // 로또 구매자 테이블에서 시작하는 ID찾기
         luckyNum();
         checkLotto(startId);

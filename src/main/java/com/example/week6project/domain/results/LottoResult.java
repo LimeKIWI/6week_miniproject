@@ -24,7 +24,11 @@ public class LottoResult {
     private Member member;
 
     @Column
-    private int winCount;
+    private int coutn1st;
+    private int coutn2nd;
+    private int coutn3rd;
+    private int coutn4th;
+    private int coutn5th;
 
     @Column
     private int playCount;
@@ -32,9 +36,23 @@ public class LottoResult {
     @Column
     private int earnPoint;
 
-    public void result(int winCount, int earnPoint) {
+    public void result(int result, int earnPoint) {
         this.playCount++;
-        this.winCount += winCount;
         this.earnPoint += earnPoint;
+        if(result==1){
+            this.coutn1st+=1;
+        }
+        if(result==2){
+            this.coutn2nd+=1;
+        }
+        if(result==3){
+            this.coutn3rd+=1;
+        }
+        if(result==4){
+            this.coutn4th+=1;
+        }
+        if(result==5){
+            this.coutn5th+=1;
+        }
     }
 }
