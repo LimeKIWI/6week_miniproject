@@ -22,6 +22,19 @@ Content-Type: application/json
   "nickName": "asdf2"
 }
 
+### signup3
+POST http://localhost:8080/api/member/signup
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf3",
+  "passWord": "asdf3",
+  "birthDate" : "21131111",
+  "nickName": "asdf3"
+}
+
+
 
 ### duplicateCheckId
 POST http://localhost:8080/api/member/chkId
@@ -61,10 +74,20 @@ Content-Type: application/json
   "passWord": "asdf2"
 }
 
+### login3
+POST http://localhost:8080/api/member/login
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf3",
+  "passWord": "asdf3"
+}
+
 ### oddtest
 POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODUyMTF9.Na1ewqCCdcvzFm6V2sLOtAa6vWi1JV55nt9bJqKaNEE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMyIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5NzgxOH0.Hn_mqMxsJNfNqV_juIdd_8ca9lB7hECi0960qjK7WPQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTE4MTh9.2MSd7oNcc1DQwX6l-Y5XdmeV9aCQsj7VoNkmHHMM66g
 accept: */*
 Content-Type: application/json
 
@@ -75,8 +98,8 @@ Content-Type: application/json
 
 ### dicetest
 POST http://localhost:8080/api/game/dice
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjg3NDUwfQ.Bwce5yvxZz6qu5P65cQo5M6p1KKgTSk9611JHwUK5-8
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODE0NTB9.dx2LhMNdswvKlTw6njZTGNuGtjobLdByQ9PGZ21-oT0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5ODA1N30.Sgteo9RNv6PNVRYMpKasIxAk0Gcdkr44Aeovapt6Qcc
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTIwNTd9.KtpJDdxp_BLsZkmlZK8Jt5H6GDI0OTjEBcJn1OfHSoA
 accept: */*
 Content-Type: application/json
 
@@ -123,10 +146,22 @@ accept: */*
 
 ### myPageTest
 GET http://localhost:8080/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxOTMwfQ.PbVON6m7NXXkzNiIW_Ji3wDqwsQ4XDE11nEITA2e79Y
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4ODU5MzB9.N-3n3QSg7fX_Je9JeHlwojN0Rur0CpamEI5qAYmIByw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5NzgxNn0.b3dbW9g6cVMRG4PGMjHI_DcFKW15uBGsPy3U_9RHtlM
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTE4MTZ9.CpxsJ3LlDZywXpxqjrQ6Vfum5sX4P7JWFdDnCI96SQ4
 accept: */*
 
+
+### totalTest
+GET http://localhost:8080/api/ranking
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMyIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5NzgxOH0.Hn_mqMxsJNfNqV_juIdd_8ca9lB7hECi0960qjK7WPQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTE4MTh9.2MSd7oNcc1DQwX6l-Y5XdmeV9aCQsj7VoNkmHHMM66g
+accept: */*
+
+### gameRankTest
+GET http://localhost:8080/api/ranking/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMyIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5NzgxOH0.Hn_mqMxsJNfNqV_juIdd_8ca9lB7hECi0960qjK7WPQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTE4MTh9.2MSd7oNcc1DQwX6l-Y5XdmeV9aCQsj7VoNkmHHMM66g
+accept: */*
 
 ###Test
 GET http://localhost:8080/test
