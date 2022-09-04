@@ -138,7 +138,7 @@ public class LottoService {
                 .result(0)
                 .build();
 
-        member.addPoint(-lottoPoint, 0);
+        member.addPoint(-lottoPoint);
         int[] numList=new int[6];
         numList[0]= lotto.getNum1();
         numList[1]= lotto.getNum2();
@@ -256,36 +256,36 @@ public class LottoService {
             // 1등부터 당첨금 정산, 구매 총액에서 정산후 남은 금액은 다음 회차로 이월
             for (int i = 0; i < count1st.size(); i++) {
                 Member member = count1st.get(i).getMember();
-                member.addPoint((int) point1st, 0);
-                member.addPoint((int) 15000000/count1st.size(), 0);
+                member.addPoint((int) point1st);
+                member.addPoint((int) 15000000/count1st.size());
                 lottoServer.plusPoint((int)-point1st);
                 totalPoint -= point1st;
             }
 
             for (int i = 0; i < count2nd.size(); i++) {
                 Member member = count2nd.get(i).getMember();
-                member.addPoint((int) point2nd, 0);
-                member.addPoint((int) 3000000/count2nd.size(), 0);
+                member.addPoint((int) point2nd);
+                member.addPoint((int) 3000000/count2nd.size());
                 lottoServer.plusPoint((int)-point2nd);
                 totalPoint -= point2nd;
             }
 
             for (int i = 0; i < count3rd.size(); i++) {
                 Member member = count3rd.get(i).getMember();
-                member.addPoint((int) point3rd, 0);
-                member.addPoint((int) 200000/count3rd.size(), 0);
+                member.addPoint((int) point3rd);
+                member.addPoint((int) 200000/count3rd.size());
                 lottoServer.plusPoint((int)-point3rd);
                 totalPoint -= point3rd;
             }
 
             for (int i = 0; i < count4th.size(); i++) {
                 Member member = count4th.get(i).getMember();
-                member.addPoint((int)point4th, 0);
+                member.addPoint((int)point4th);
             }
 
             for (int i = 0; i < count5th.size(); i++) {
                 Member member = count5th.get(i).getMember();
-                member.addPoint((int)point5th, 0);
+                member.addPoint((int)point5th);
             }
 
             int firstMan=1;
