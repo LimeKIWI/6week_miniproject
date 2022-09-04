@@ -136,7 +136,7 @@ public class GameService {
 
     }
 
-    private ResponseDto<?> validateCheck(HttpServletRequest request) {
+    ResponseDto<?> validateCheck(HttpServletRequest request) {
         if(null == request.getHeader("RefreshToken") || null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
         }

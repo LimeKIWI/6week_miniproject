@@ -6,7 +6,7 @@ Content-Type: application/json
 {
   "id": "asdf",
   "password": "asdf",
-  "birthDate" : 20030903,
+  "birthDate" : "20030903",
   "nickname": "asdf"
 }
 
@@ -130,7 +130,65 @@ accept: */*
 
 ###Test
 GET http://localhost:8080/test
+<<<<<<< HEAD
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMTQ0MjkyfQ.134GETuXldQByTKn6vKXMfhi4ctF-JShKO1Hgw1vt84
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI3MzgyOTJ9.u2QzvlA1FnjFsqOYf4-eYEU5aQSXHuvu8luVTQvZ-HA
+=======
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA4MjE2fQ.d1C_dCmJIBOEO2J2rczwpH4crVusCNWX3CJA28U1nFQ
 RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDIyMTZ9.3rj1LH-dIpxqo-4Jt8-1MAh8AUwE3b_QWHhCsdu-_T0
+>>>>>>> 0662f2d4c6bc9737cba6e4fb55d3ee041930635f
 accept: */*
 Content-Type: application/json
+
+###LottoTest1
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NjU2fQ.Y_oTg-OmNY-i3UUiw1pIZTF2BKY3CN3KNbiqGOI2p58
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg2NTZ9.Od4HdJiw_djUMy-zPcyt3z3xqlN_bcsTfHK4iJEM-Kk
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 1,
+  "num2": 2,
+  "num3": 3,
+  "num4": 4,
+  "num5": 5,
+  "num6": 6
+}
+###LottoTest2
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjM0NTY0fQ.xcym5fFlxNEwrgUxqanUo0Sm5pzdq-1JitU7WSdGUlE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4Mjg1NjR9._gY_zD2raHtaKqheePGYKgTAY6opqyhQ5cVrIdbpXYM
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 1,
+  "num2": 2,
+  "num3": 3,
+  "num4": 4,
+  "num5": 5,
+  "num6": 7
+}
+
+###LottoTest3
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjMyOTQ0fQ.gBAXNlzNcBpT7OYKyuz-lrMbsCqhZF4e-TZ2R2KdgUo
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MjY5NDR9.m7lQY9T96tfaNW9yk9o9ftIRXzuLYVsC7_n6pPQyO-Q
+accept: */*
+Content-Type: application/json
+
+{
+  "num1": 2,
+  "num2": 3,
+  "num3": 5,
+  "num4": 6,
+  "num5": 7,
+  "num6": 15
+}
+
+
+###LottoFinal
+GET http://localhost:8080/api/game/lottotest
+accept: */*
+
