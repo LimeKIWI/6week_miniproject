@@ -48,7 +48,7 @@ public class CommentService {
                         .build();
                 oddEvenCommentRepository.save(oddEvenComment);
                 return ResponseDto.success(CommentResponseDto.builder()
-                        .nickName(oddEvenComment.getMember().getNickname())
+                        .nickName(oddEvenComment.getMember().getNickName())
                         .content(commentRequestDto.getContent())
                         .build());
             case "DICE":
@@ -58,7 +58,7 @@ public class CommentService {
                         .build();
                 diceCommentRepository.save(diceComment);
                 return ResponseDto.success(CommentResponseDto.builder()
-                        .nickName(diceComment.getMember().getNickname())
+                        .nickName(diceComment.getMember().getNickName())
                         .content(commentRequestDto.getContent())
                         .build());
             case "LOTTO":
@@ -68,7 +68,7 @@ public class CommentService {
                         .build();
                 lottoCommentRepository.save(lottoComment);
                 return ResponseDto.success(CommentResponseDto.builder()
-                        .nickName(lottoComment.getMember().getNickname())
+                        .nickName(lottoComment.getMember().getNickName())
                         .content(commentRequestDto.getContent())
                         .build());
             case "COUNTER":
@@ -78,7 +78,7 @@ public class CommentService {
                         .build();
                 counterCommentRepository.save(counterComment);
                 return ResponseDto.success(CommentResponseDto.builder()
-                        .nickName(counterComment.getMember().getNickname())
+                        .nickName(counterComment.getMember().getNickName())
                         .content(commentRequestDto.getContent())
                         .build());
         }
@@ -210,7 +210,7 @@ public class CommentService {
                 List<OddEvenComment> list1 = oddEvenCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(OddEvenComment comment : list1) {
                    CommentResponseDto commentResponseDto = CommentResponseDto.builder()
-                           .nickName(comment.getMember().getNickname())
+                           .nickName(comment.getMember().getNickName())
                            .content(comment.getContent())
                            .build();
                    commentResponseList.add(commentResponseDto);
@@ -221,7 +221,7 @@ public class CommentService {
                 List<DiceComment> list2 = diceCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(DiceComment comment : list2) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
-                            .nickName(comment.getMember().getNickname())
+                            .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
                     commentResponseList.add(commentResponseDto);
@@ -232,7 +232,7 @@ public class CommentService {
                 List<LottoComment> list3 = lottoCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(LottoComment comment : list3) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
-                            .nickName(comment.getMember().getNickname())
+                            .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
                     commentResponseList.add(commentResponseDto);
@@ -243,7 +243,7 @@ public class CommentService {
                 List<CounterComment> list4 = counterCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(CounterComment comment : list4) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
-                            .nickName(comment.getMember().getNickname())
+                            .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
                     commentResponseList.add(commentResponseDto);

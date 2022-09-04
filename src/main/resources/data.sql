@@ -1,1 +1,0 @@
-insert into "LOTTO_SERVER" (point) values (1000);

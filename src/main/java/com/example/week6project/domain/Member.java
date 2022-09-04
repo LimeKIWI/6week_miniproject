@@ -17,12 +17,13 @@ public class Member {
     private String id;
 
     @Column(nullable = false)
-    private String password;
+    private String passWord;
 
     @Column(nullable = false)
-    private String nickname;
+    private String nickName;
 
-
+    @Column
+    private int totalWinCount;
     @Column
     private String img;
 
@@ -37,6 +38,10 @@ public class Member {
 
     public void addPoint(int point) {
         this.point += point;
+    }
+
+    public void addWinCount(int winCount) {
+        this.totalWinCount += winCount;
     }
 
     public void addProfileImg(String url) {

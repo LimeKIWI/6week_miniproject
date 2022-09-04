@@ -9,14 +9,11 @@ import com.example.week6project.domain.Member;
 import com.example.week6project.repository.LottoRepository;
 import com.example.week6project.repository.LottoServerRepository;
 import com.example.week6project.repository.MemberRepository;
-import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -81,9 +78,11 @@ public class LottoService {
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
 
+
         int[] luckyNum=luckyNum();
         lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum);
         checkLotto(lastId,luckyNum);
+
         LottoResponseDto temp_dto = lottoFinal(lastId);
         LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
                 .num(luckyNum)
@@ -186,7 +185,7 @@ public class LottoService {
             Lotto lotto=lottoList.get(i);
             for (int j = 0; j < 6; j++) {
                 if(lotto.getNum1()==luckyNum[j]||lotto.getNum2()==luckyNum[j]||lotto.getNum3()==luckyNum[j]||lotto.getNum4()==luckyNum[j]||lotto.getNum5()==luckyNum[j]||lotto.getNum6()==luckyNum[j]){
-                        lotto.plusOne();
+                    lotto.plusOne();
                 }
             }
             if (lotto.getNum1()==luckyNum[6]||lotto.getNum2()==luckyNum[6]||lotto.getNum3()==luckyNum[6]||lotto.getNum4()==luckyNum[6]||lotto.getNum5()==luckyNum[6]||lotto.getNum6()==luckyNum[6]){
@@ -341,4 +340,3 @@ public class LottoService {
 
 
 }
-

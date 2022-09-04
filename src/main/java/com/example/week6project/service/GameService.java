@@ -67,6 +67,7 @@ public class GameService {
             winCount = 1;
             point = bettingPoint* ODDEVEN_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
+            updateMember.addWinCount(winCount);
         }
         oddEvenResult.result(winCount,point);   // 포인트및 결과 저장
 
@@ -121,6 +122,7 @@ public class GameService {
             winCount = 1;
             point = bettingPoint* DICE_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
+            updateMember.addWinCount(winCount);
         }
         diceResult.result(winCount,point);   // 포인트및 결과 저장
 
@@ -136,7 +138,7 @@ public class GameService {
 
     }
 
-    ResponseDto<?> validateCheck(HttpServletRequest request) {
+    public ResponseDto<?> validateCheck(HttpServletRequest request) {
         if(null == request.getHeader("RefreshToken") || null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND", "로그인이 필요합니다.");
         }
