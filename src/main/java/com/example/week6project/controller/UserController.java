@@ -21,9 +21,9 @@ public class UserController {
     }
 
     // 프로필 이미지 업로드
-    @RequestMapping (value = "/api/user/image/{id}", method = RequestMethod.POST)
-    public ResponseDto<?> imageUpload(@PathVariable Long id, @RequestPart("image") MultipartFile multipartFile, HttpServletRequest request) {
-        return userService.profileImageUpload(id, multipartFile, request);
+    @RequestMapping (value = "/api/user/image/", method = RequestMethod.PATCH)
+    public ResponseDto<?> imageUpload(@RequestPart("image") MultipartFile multipartFile, HttpServletRequest request) {
+        return userService.profileImageUpload(multipartFile, request);
     }
 
 }
