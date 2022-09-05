@@ -41,6 +41,7 @@ public class RankingService {
         List<WinCountRankResponseDto> countDtolist = new ArrayList<>();
         for(int i = 0, n = memberWinList.size(); i < n && i < 30; i++) {
             WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()
+                    .rank(i+1)
                     .nickName(memberWinList.get(i).getNickName())
                     .totalWinCount(memberWinList.get(i).getTotalWinCount())
                     .build();
@@ -51,6 +52,7 @@ public class RankingService {
         List<PointRankResponseDto> pointDtoList = new ArrayList<>();
         for(int i = 0, n = memberPointList.size(); i < n && i < 30; i++) {
             PointRankResponseDto pointRankResponseDto = PointRankResponseDto.builder()
+                    .rank(i+1)
                     .nickName(memberPointList.get(i).getNickName())
                     .totalPoint(memberPointList.get(i).getPoint())
                     .build();
@@ -75,6 +77,7 @@ public class RankingService {
             List<WinCountRankResponseDto> oddWinListDto = new ArrayList<>();
             for(int i = 0, n = oddWinList.size(); i < n && i < 30; i++) {
                 WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()
+                        .rank(i+1)
                         .nickName(oddWinList.get(i).getMember().getNickName())
                         .totalWinCount(oddWinList.get(i).getWinCount())
                         .build();
@@ -85,6 +88,7 @@ public class RankingService {
             List<EarnPointResponseDto> oddEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = oddPointList.size(); i < n && i < 30; i++) {
                 EarnPointResponseDto earnPointResponseDto = EarnPointResponseDto.builder()
+                        .rank(i+1)
                         .nickName(oddPointList.get(i).getMember().getNickName())
                         .earnPoint(oddPointList.get(i).getEarnPoint())
                         .build();
@@ -103,6 +107,7 @@ public class RankingService {
             List<WinCountRankResponseDto> diceWinListDto = new ArrayList<>();
             for(int i = 0, n = diceResultList.size(); i < n && i < 30; i++) {
                 WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()
+                        .rank(i+1)
                         .nickName(diceResultList.get(i).getMember().getNickName())
                         .totalWinCount(diceResultList.get(i).getWinCount())
                         .build();
@@ -113,6 +118,7 @@ public class RankingService {
             List<EarnPointResponseDto> diceEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = dicePointList.size(); i < n && i < 30; i++) {
                 EarnPointResponseDto earnPointResponseDto = EarnPointResponseDto.builder()
+                        .rank(i+1)
                         .nickName(dicePointList.get(i).getMember().getNickName())
                         .earnPoint(dicePointList.get(i).getEarnPoint())
                         .build();
@@ -131,6 +137,7 @@ public class RankingService {
             List<EarnPointResponseDto> lottoEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = lottoResultList.size(); i < n && i < 30; i++) {
                 EarnPointResponseDto earnPointResponseDto = EarnPointResponseDto.builder()
+                        .rank(i+1)
                         .nickName(lottoResultList.get(i).getMember().getNickName())
                         .earnPoint(lottoResultList.get(i).getEarnPoint())
                         .build();
@@ -147,6 +154,7 @@ public class RankingService {
             List<MaxCountResponseDto> counterMaxListDto = new ArrayList<>();
             for(int i = 0, n = counterResultList.size(); i < n && i < 30; i++) {
                 MaxCountResponseDto maxCountResponseDto = MaxCountResponseDto.builder()
+                        .rank(i+1)
                         .nickName(counterResultList.get(i).getMember().getNickName())
                         .maxCount(counterResultList.get(i).getMaxCount())
                         .build();
