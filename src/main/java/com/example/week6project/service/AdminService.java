@@ -41,11 +41,17 @@ public class AdminService {
     @Transactional
     public ResponseDto<?> addPointByAdmin(String id, PointRequestDto requestDto){
         int point = requestDto.getPoint();
-        Member member = memberRepository.findById(id).get();
+        try {
+            Member member = memberRepository.findById(id).get();
+            member.addPoint(point);
+            String dto = member.getNickName()+" " + point + "포인트 지급 완료";
+            return ResponseDto.success(dto);
+        }
+        catch (Exception e){
+            return ResponseDto.fail("Not_Exist_ID","존재하지 않는 아이디 입니다");
+        }
         // 만약 없는 아이디일시 NoSuchElementException 대신 커스텀Exception 출력
-        member.addPoint(point);
-        String dto = member.getNickName()+" " + point + "포인트 지급 완료";
-        return ResponseDto.success(dto);
+
 
     }
 

@@ -29,6 +29,8 @@ public class GameService {
     static final int ODDEVEN_MAGNIFICATION = 2; // 홀짝 배율
     static final int DICE_MAGNIFICATION = 8;    // 주사위 배율
 
+    static final double COUNTER_MAGNIFICATION = 10; // 환산 배율
+
     private final TokenProvider tokenProvider;
     private final OddEvenResultRepository oddEvenResultRepository;
     private final DiceResultRepository diceResultRepository;
@@ -155,8 +157,7 @@ public class GameService {
         Member updateMember = memberRepository.findById(member.getId()).get();
 
         // 포인트 정산
-        double magnification=10; // 환산 배율
-        int addpoint = counterRequestDto.getCount()*(int)magnification;
+        int addpoint = counterRequestDto.getCount()*(int)COUNTER_MAGNIFICATION;
         updateMember.addPoint(addpoint);
         CounterResult counterResult=counterResultRepository.findByMember(member);
         counterResult.result(addpoint,counterRequestDto.getCount());
