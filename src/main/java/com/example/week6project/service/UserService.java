@@ -4,7 +4,9 @@ import com.example.week6project.controller.response.MyPageResponseDto;
 import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.ImageMapper;
 import com.example.week6project.domain.Member;
+import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
+import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.repository.MemberRepository;
 import com.example.week6project.repository.results.CounterResultRepository;
@@ -40,8 +42,8 @@ public class UserService {
 
         OddEvenResult oddEvenResult = oddEvenResultRepository.findByMember(member);
         DiceResult diceResult = diceResultRepository.findByMember(member);
-       // LottoResult lottoResult = lottoResultRepository.findByMember(member);
-       // CounterResult counterResult = counterResultRepository.findByMember(member);
+        LottoResult lottoResult = lottoResultRepository.findByMember(member);
+        CounterResult counterResult = counterResultRepository.findByMember(member);
 
         MyPageResponseDto myPageResponseDto = MyPageResponseDto.builder()
                 .id(member.getId())
@@ -49,8 +51,8 @@ public class UserService {
                 .point(member.getPoint())
                 .winCountOfOddEven(oddEvenResult.getWinCount())
                 .winCountOfDice(diceResult.getWinCount())
-                .winCountOfLotto(0)
-                .highestCountOfCounter(0)
+                .earnPointOfLotto(lottoResult.getEarnPoint())
+                .highestCountOfCounter(counterResult.getMaxCount())
                 .build();
 
         return ResponseDto.success(myPageResponseDto);
@@ -59,7 +61,7 @@ public class UserService {
 
     // 프로필 이미지 업로드
     @Transactional
-    public ResponseDto<?> profileImageUpload(Long id, MultipartFile multipartFile, HttpServletRequest request) {
+    public ResponseDto<?> profileImageUpload(MultipartFile multipartFile, HttpServletRequest request) {
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
