@@ -57,7 +57,6 @@ public class TokenProvider {
         long now = (new Date().getTime());
 
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
-        System.out.println(member.getUserRole().toString());
         String accessToken = Jwts.builder()
                 .setSubject(member.getNickName())
                 .claim(AUTHORITIES_KEY, member.getUserRole().toString())
@@ -133,9 +132,7 @@ public class TokenProvider {
 
     public Authentication getAuthentication(HttpServletRequest request) {
         String token=getAccessToken(request);
-        System.out.println("Atoken"+token);
         if(token==null) {
-            System.out.println("null!!");
             return null;
         }
         else {
@@ -159,10 +156,8 @@ public class TokenProvider {
 
     private String getAccessToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        System.out.println("btoken"+bearerToken);
 
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            System.out.println("btoken-substring"+bearerToken);
             return bearerToken.substring(7);
         }
 

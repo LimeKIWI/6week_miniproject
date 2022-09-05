@@ -38,7 +38,7 @@ public class Member {
     private int point;
 
     @Column
-    private Enum userRole;
+    private String userRole;
 
     public void addPoint(int point) {
         this.point += point;
