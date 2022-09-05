@@ -1,13 +1,17 @@
 package com.example.week6project.service;
 
+import com.example.week6project.controller.request.CounterRequestDto;
 import com.example.week6project.controller.request.DiceRequestDto;
 import com.example.week6project.controller.request.OddEvenRequestDto;
+import com.example.week6project.controller.response.CounterResponseDto;
 import com.example.week6project.controller.response.DefaultGameResponseDto;
 import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.Member;
+import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
 import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.repository.MemberRepository;
+import com.example.week6project.repository.results.CounterResultRepository;
 import com.example.week6project.repository.results.DiceResultRepository;
 import com.example.week6project.repository.results.OddEvenResultRepository;
 import com.example.week6project.security.TokenProvider;
@@ -28,6 +32,7 @@ public class GameService {
     private final TokenProvider tokenProvider;
     private final OddEvenResultRepository oddEvenResultRepository;
     private final DiceResultRepository diceResultRepository;
+    private final CounterResultRepository counterResultRepository;
     private final MemberRepository memberRepository;
 
     // 홀,짝 게임
@@ -136,6 +141,34 @@ public class GameService {
 
         return ResponseDto.success(defaultGameResponseDto);
 
+    }
+
+    // 카운트 게임
+    @Transactional
+    public ResponseDto<?> runCounter(CounterRequestDto counterRequestDto, HttpServletRequest request){
+        // 유저 로그인 체크
+        ResponseDto<?> chkResponse =  validateCheck(request);
+        if(!chkResponse.isSuccess())
+            return chkResponse;
+        Member member = (Member)chkResponse.getData();
+        // 유저 테이블에서 유저객체 가져오기
+        Member updateMember = memberRepository.findById(member.getId()).get();
+
+        // 포인트 정산
+        double magnification=10; // 환산 배율
+        int addpoint = counterRequestDto.getCount()*(int)magnification;
+        updateMember.addPoint(addpoint);
+        CounterResult counterResult=counterResultRepository.findByMember(member);
+        counterResult.result(addpoint,counterRequestDto.getCount());
+
+        CounterResponseDto counterResponseDto= CounterResponseDto.builder()
+                .nowcount(counterRequestDto.getCount())
+                .maxcount(counterResult.getMaxCount())
+                .getpoint(addpoint)
+                .nowpoint(updateMember.getPoint())
+                .build();
+
+        return ResponseDto.success(counterResponseDto);
     }
 
     public ResponseDto<?> validateCheck(HttpServletRequest request) {
