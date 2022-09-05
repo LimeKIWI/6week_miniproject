@@ -108,6 +108,7 @@ Content-Type: application/json
   "number" : 5
 }
 
+
 ### commentPostTest
 POST http://localhost:8080/api/comment?gameId=2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMzExIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzAxMDA5fQ.UQ1CpJIQUmfHemlJ71lwPumiJcvjsNJjQQ6Gdo700OI
