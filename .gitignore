@@ -26,6 +26,9 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 application-aws.properties
+AdminController.http
+MemberController.http
+GameController.http
 
 ### NetBeans ###
 /nbproject/private/
