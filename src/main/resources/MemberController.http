@@ -84,30 +84,6 @@ Content-Type: application/json
   "passWord": "asdf3"
 }
 
-### oddtest
-POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMyIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5NzgxOH0.Hn_mqMxsJNfNqV_juIdd_8ca9lB7hECi0960qjK7WPQ
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTE4MTh9.2MSd7oNcc1DQwX6l-Y5XdmeV9aCQsj7VoNkmHHMM66g
-accept: */*
-Content-Type: application/json
-
-{
-  "point" : 10,
-  "number" : 1
-}
-
-### dicetest
-POST http://localhost:8080/api/game/dice
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5ODA1N30.Sgteo9RNv6PNVRYMpKasIxAk0Gcdkr44Aeovapt6Qcc
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTIwNTd9.KtpJDdxp_BLsZkmlZK8Jt5H6GDI0OTjEBcJn1OfHSoA
-accept: */*
-Content-Type: application/json
-
-{
-  "point" : 5,
-  "number" : 5
-}
-
 ### commentPostTest
 POST http://localhost:8080/api/comment?gameId=2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjkxMjExfQ.hTIwqRbmXc4GTW5cxzbFJHnmIefj12uD44zc9qh49xk

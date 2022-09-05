@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
+import static com.example.week6project.domain.Authority.ROLE_ADMIN;
 import static com.example.week6project.domain.Authority.ROLE_MEMBER;
 
 @RequiredArgsConstructor
@@ -193,5 +194,24 @@ public class MemberService {
         }
     }
 
+    // TEST - ADMIN 생성
+    @Transactional
+    public ResponseDto<?> createAdmin(MemberRequestDto requestDto) {
+        Member member = Member.builder()
+                .id(requestDto.getId())
+                .nickName(requestDto.getNickName())
+                .birthDate(Integer.parseInt(requestDto.getBirthDate()))
+                .passWord(passwordEncoder.encode(requestDto.getPassWord()))
+                .totalWinCount(0)
+                .point(100)
+                .userRole(ROLE_ADMIN)
+                .build();
+        memberRepository.save(member);
+
+        // 유저 결산테이블 초기화
+        createResult(member);
+
+        return ResponseDto.success("회원가입 성공");
+    }
 
 }

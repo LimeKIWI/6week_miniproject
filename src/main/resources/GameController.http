@@ -1,0 +1,59 @@
+### oddtest
+POST http://localhost:8080/api/game/oddeven
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjM1NjgwOH0.WOwdi90exndZWlo2llOc6qyTEoj7IO7ZigLdiRx6U58
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NTA4MDh9.MfP6_z6B4wNS4qxB_FBT04KqnaPjQ9RsJU5Zapd_DQw
+Access-Token-Expire-Time: 1662350373666
+accept: */*
+Content-Type: application/json
+
+{
+  "point" : 10,
+  "number" : 1
+}
+
+### dicetest
+POST http://localhost:8080/api/game/dice
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMiIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2MjI5ODA1N30.Sgteo9RNv6PNVRYMpKasIxAk0Gcdkr44Aeovapt6Qcc
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTIwNTd9.KtpJDdxp_BLsZkmlZK8Jt5H6GDI0OTjEBcJn1OfHSoA
+accept: */*
+Content-Type: application/json
+
+{
+  "point" : 5,
+  "number" : 5
+}
+
+### lottoTest
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUwMzczfQ.2iO4m_Dy2YIgrW_fXhYJQK8xAeCDzrKLCTH1BH8b_UU
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDQzNzN9.RIIbel0za22mARCJoimWcZfJdS5PLkBqT3EFMRwODk0
+accept: */*
+Content-Type: application/json
+
+{
+  "num1":1,
+  "num2":2,
+  "num3":3,
+  "num4":4,
+  "num5":5,
+  "num6":6
+}
+
+### lottoresult
+GET http://localhost:8080/api/game/lottotest
+accept: */*
+Content-Type: application/json
+
+### CounterTest
+POST http://localhost:8080/api/game/counter
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU1ODA2fQ.rwYL-OHGDBFYbBxg1WZAmHO03gMu-1nVMtWZs18zM2A
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDk4MDZ9.trYeCr9CyU3JMngvvCYxlAZfl_ymLOCucKZLTJ79pZU
+Access-Token-Expire-Time: 1662350373666
+accept: */*
+Content-Type: application/json
+
+{
+  "count": 33
+}
+
+
