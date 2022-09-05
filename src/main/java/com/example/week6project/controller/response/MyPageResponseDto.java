@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+// 마이페이지 출력 dto
 public class MyPageResponseDto {
     private String id;
     private String nickName;

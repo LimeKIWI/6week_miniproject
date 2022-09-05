@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// 승리 횟수 저장 dto
 public class WinCountRankResponseDto {
     private int rank;
     private String nickName;

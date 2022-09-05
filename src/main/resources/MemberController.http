@@ -87,8 +87,8 @@ Content-Type: application/json
 
 ### oddtest
 POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzIyNzM0fQ.CeapVej14QBzkLGbRE5DE-630G-Riz0c2um8HWxgExI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5MTY3MzR9.CIDwy6aeQkGnYjiJnntE0zvPAuI2PiBuP4k1rXUJrBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0NzQ0fQ.TKlf_efa6HKkyxK7V2L3laW9IN3Ndnh-hwUwM_Ui_HE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDg3NDR9.rkW00ig_SI-s3ieg8vIuMGSGEBp_PhYP4_VuxKnSYNQ
 accept: */*
 Content-Type: application/json
 
@@ -99,8 +99,8 @@ Content-Type: application/json
 
 ### dicetest
 POST http://localhost:8080/api/game/dice
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMzExIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzAxMDA5fQ.UQ1CpJIQUmfHemlJ71lwPumiJcvjsNJjQQ6Gdo700OI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTUwMDl9.6UuCNuvRagnc1DntOuNWmFOpokOFYzqMIGEJVwDTCTY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0NzQ0fQ.TKlf_efa6HKkyxK7V2L3laW9IN3Ndnh-hwUwM_Ui_HE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDg3NDR9.rkW00ig_SI-s3ieg8vIuMGSGEBp_PhYP4_VuxKnSYNQ
 accept: */*
 Content-Type: application/json
 
@@ -111,26 +111,26 @@ Content-Type: application/json
 
 ### commentPostTest
 POST http://localhost:8080/api/comment?gameId=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMzExIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzAxMDA5fQ.UQ1CpJIQUmfHemlJ71lwPumiJcvjsNJjQQ6Gdo700OI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTUwMDl9.6UuCNuvRagnc1DntOuNWmFOpokOFYzqMIGEJVwDTCTY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0MTAwfQ.-77InXtF9ciyhqJtmFXBuLBwUhP-phXrzs-P68eQSxQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDgxMDB9.n4jGscU75ToDCohmBixZAp8iZ00pKUsO1rHhLhErE7g
 accept: */*
 Content-Type: application/json
 
 {
-  "content" : "내용입니다."
+  "content" : "28전 1승 라이프는제로"
 }
 
 ### commentGetTest
 GET http://localhost:8080/api/comment?gameId=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMzExIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzAxMDA5fQ.UQ1CpJIQUmfHemlJ71lwPumiJcvjsNJjQQ6Gdo700OI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTUwMDl9.6UuCNuvRagnc1DntOuNWmFOpokOFYzqMIGEJVwDTCTY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyNTIyfQ.OU8cL_xqFQEvj7FHcDzByUp7JH2yhLOJeSeiL9Uz3zE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDY1MjJ9.OzOAyfF96l1SirtorevRQgVMTz2i4ozV4-m7TR8q040
 accept: */*
 
 
 ### commentPatchTest
-PATCH http://localhost:8080/api/comment?gameId=1&id=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMjA3MzQ3fQ.JdUqNwcRXoUxojA-zufoH_W4Zragl5Gi2Uv5dWpO_Ug
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4MDEzNDd9.Z2W9UCQsZAALGUZVAamA94-10OCgLzMEjd-Dwsk0CdM
+PATCH http://localhost:8080/api/comment?gameId=2&id=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
 accept: */*
 Content-Type: application/json
 
@@ -140,28 +140,28 @@ Content-Type: application/json
 
 ### commentDeleteTest
 DELETE http://localhost:8080/api/comment?gameId=2&id=1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmMzExIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzAxMDA5fQ.UQ1CpJIQUmfHemlJ71lwPumiJcvjsNJjQQ6Gdo700OI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI4OTUwMDl9.6UuCNuvRagnc1DntOuNWmFOpokOFYzqMIGEJVwDTCTY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
 accept: */*
 
 
 ### myPageTest
 GET http://localhost:8080/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzIyNzM0fQ.CeapVej14QBzkLGbRE5DE-630G-Riz0c2um8HWxgExI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5MTY3MzR9.CIDwy6aeQkGnYjiJnntE0zvPAuI2PiBuP4k1rXUJrBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
 accept: */*
 
 
 ### totalTest
 GET http://localhost:8080/api/ranking
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzIyNzM0fQ.CeapVej14QBzkLGbRE5DE-630G-Riz0c2um8HWxgExI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5MTY3MzR9.CIDwy6aeQkGnYjiJnntE0zvPAuI2PiBuP4k1rXUJrBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
 accept: */*
 
 ### gameRankTest
 GET http://localhost:8080/api/ranking/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzIyNzM0fQ.CeapVej14QBzkLGbRE5DE-630G-Riz0c2um8HWxgExI
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5MTY3MzR9.CIDwy6aeQkGnYjiJnntE0zvPAuI2PiBuP4k1rXUJrBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyNTIyfQ.OU8cL_xqFQEvj7FHcDzByUp7JH2yhLOJeSeiL9Uz3zE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDY1MjJ9.OzOAyfF96l1SirtorevRQgVMTz2i4ozV4-m7TR8q040
 accept: */*
 
 ###Test
