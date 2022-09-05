@@ -123,7 +123,14 @@ public class MemberService {
     @Transactional
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
         String id = requestDto.getId();
-        String nickName= requestDto.getNickName();
+        String nickName = requestDto.getNickName();
+        String birthDate = requestDto.getBirthDate();
+        String passWord = requestDto.getPassWord();
+        String Blank = "";
+        if(id==Blank||nickName==Blank||birthDate==Blank||passWord==Blank){
+            return ResponseDto.fail("BAD_REQUEST", "빈칸을 채워 다시 입력해주세요.");
+        }
+
         if(memberRepository.findById(id).isPresent() || memberRepository.findByNickName(nickName).isPresent())
             return ResponseDto.fail("BAD_REQUEST", "입력값 중복확인을 다시 해주세요");
 
@@ -134,7 +141,7 @@ public class MemberService {
                 .passWord(passwordEncoder.encode(requestDto.getPassWord()))
                 .totalWinCount(0)
                 .point(100)
-                .userRole(ROLE_MEMBER)
+                .userRole(ROLE_MEMBER.toString())
                 .build();
         memberRepository.save(member);
 
@@ -209,7 +216,7 @@ public class MemberService {
                 .passWord(passwordEncoder.encode(requestDto.getPassWord()))
                 .totalWinCount(0)
                 .point(100)
-                .userRole(ROLE_ADMIN)
+                .userRole(ROLE_ADMIN.toString())
                 .build();
         memberRepository.save(member);
 

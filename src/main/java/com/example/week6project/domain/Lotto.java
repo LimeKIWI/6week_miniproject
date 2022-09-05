@@ -57,8 +57,7 @@ public class Lotto {
     }
 
     public void rank(){
-        System.out.println("inDB : " + this.result);
-        if(this.result==6){
+         if(this.result==6){
             this.result=1;
         }
         else if(this.result==15){

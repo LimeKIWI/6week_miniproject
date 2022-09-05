@@ -38,11 +38,11 @@ public class GameController {
         return lottoService.saveNum(lottoRequestDto, request);
     }
 
-    // TEST 로또 결과
-    @RequestMapping (value = "/api/game/lottotest", method = RequestMethod.GET)
-    public ResponseDto<?> testLotto() {
-        return lottoService.runLotto();
-    }
+//    // TEST 로또 결과
+//    @RequestMapping (value = "/api/game/lottotest", method = RequestMethod.GET)
+//    public ResponseDto<?> testLotto() {
+//        return lottoService.runLotto();
+//    }
 
 
     // 카운터
