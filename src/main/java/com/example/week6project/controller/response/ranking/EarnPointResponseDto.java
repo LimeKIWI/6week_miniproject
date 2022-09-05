@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// 벌어들인 포인트 순위 저장 dto
 public class EarnPointResponseDto {
     private int rank;
     private String nickName;

@@ -33,13 +33,16 @@ public class CommentService {
     private final CounterCommentRepository counterCommentRepository;
     private final TokenProvider tokenProvider;
 
+    // 댓글 작성
     @Transactional
     public ResponseDto<?> createComment(CommentRequestDto commentRequestDto, HttpServletRequest request, GameType gameType) {
+        //로그인확인
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
         Member member = (Member) chkResponse.getData();
 
+        // 각 게임 타입별 댓글 작성
         switch(gameType.name()) {
             case "ODD_EVEN":
                 OddEvenComment oddEvenComment = OddEvenComment.builder()
@@ -82,18 +85,20 @@ public class CommentService {
                         .content(commentRequestDto.getContent())
                         .build());
         }
-
+        // 타입불일치 (실제로 여기까지 오진 않음, enum범위를 넘어섬)
         return ResponseDto.fail("BAD_REQUEST_C","댓글 타입 오류");
     }
 
-
+    // 댓글 수정
     @Transactional
     public ResponseDto<?> updateComment(Long id, CommentRequestDto commentRequestDto, HttpServletRequest request, GameType gameType) {
+        // 로그인 확인
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
         Member member = (Member) chkResponse.getData();
 
+        // 게임 타입 확인
         switch(gameType.name()) {
 
             case "ODD_EVEN":
@@ -140,13 +145,16 @@ public class CommentService {
         return ResponseDto.fail("BAD_REQUEST_U","댓글 타입 오류");
     }
 
+    // 댓글 삭제
     @Transactional
     public ResponseDto<?> deleteComment(Long id, HttpServletRequest request, GameType gameType) {
+        // 로그인 확인
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
         Member member = (Member) chkResponse.getData();
 
+        // 게임 타입 확인
         switch(gameType.name()) {
 
             case "ODD_EVEN":
@@ -197,13 +205,17 @@ public class CommentService {
         return ResponseDto.fail("BAD_REQUEST_D","댓글 타입 오류");
     }
 
+    // 댓글 불러오기
     @Transactional
     public ResponseDto<?> getCommentList(HttpServletRequest request, GameType gameType) {
+        // 로그인 확인
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
 
+        // 댓글 리스트가 저장될 리스트객체 생성
         List<CommentResponseDto> commentResponseList = new ArrayList<>();
+        // 게임 타입 확인
         switch(gameType.name()) {
 
             case "ODD_EVEN":
