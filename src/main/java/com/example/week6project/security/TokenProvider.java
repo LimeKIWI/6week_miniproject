@@ -12,14 +12,23 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -34,6 +43,8 @@ public class TokenProvider {
 
     private final RefreshTokenRepository refreshTokenRepository;
 
+
+    // 암호화
     public TokenProvider(@Value("${jwt.secret}") String secretKey,
                          RefreshTokenRepository refreshTokenRepository) {
         this.refreshTokenRepository = refreshTokenRepository;
@@ -41,13 +52,15 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
+    // 토큰 생성
     public TokenDto generateTokenDto(Member member) {
         long now = (new Date().getTime());
 
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
+        System.out.println(member.getUserRole().toString());
         String accessToken = Jwts.builder()
                 .setSubject(member.getNickName())
-                .claim(AUTHORITIES_KEY, Authority.ROLE_MEMBER.toString())
+                .claim(AUTHORITIES_KEY, member.getUserRole().toString())
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
@@ -117,4 +130,44 @@ public class TokenProvider {
         refreshTokenRepository.delete(refreshToken);
         return ("success");
     }
+
+    public Authentication getAuthentication(HttpServletRequest request) {
+        String token=getAccessToken(request);
+        System.out.println("Atoken"+token);
+        if(token==null) {
+            System.out.println("null!!");
+            return null;
+        }
+        else {
+            Claims claims = Jwts
+                    .parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            Collection<? extends GrantedAuthority> authorities =
+                    Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList());
+
+            User principal = new User(claims.getSubject(), "", authorities);
+
+            return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        }
+    }
+
+    private String getAccessToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        System.out.println("btoken"+bearerToken);
+
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            System.out.println("btoken-substring"+bearerToken);
+            return bearerToken.substring(7);
+        }
+
+        return null;
+    }
+
+
 }
