@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class Week6ProjectApplication {
     public static final String ALLOWED_METHOD_NAMES = "GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,PATCH";
-    public static final String ALLOWED_HEADERS = "Origin, Content-Type, X-Auth-Token";
+    public static final String ALLOWED_HEADERS = "Origin,Content-Type,X-Auth-Token,accept";
     public static void main(String[] args) {
         SpringApplication.run(Week6ProjectApplication.class, args);
     }
@@ -26,6 +26,7 @@ public class Week6ProjectApplication {
                         .allowedMethods(ALLOWED_METHOD_NAMES.split(","))
                         .allowedHeaders(ALLOWED_HEADERS.split(","))
                         .exposedHeaders("Authorization", "RefreshToken")
+                        .allowCredentials(true)
                         .maxAge(3600);
             }
         };
