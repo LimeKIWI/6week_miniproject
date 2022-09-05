@@ -20,7 +20,7 @@ public class OddEvenResult {
     private Long Id;
 
     @JoinColumn(name = "member_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @Column
