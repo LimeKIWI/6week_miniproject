@@ -26,7 +26,6 @@ public class Week6ProjectApplication {
                         .allowedMethods(ALLOWED_METHOD_NAMES.split(","))
                         .allowedHeaders(ALLOWED_HEADERS.split(","))
                         .exposedHeaders("Authorization", "RefreshToken")
-                        .allowCredentials(true)
                         .maxAge(3600);
             }
         };
