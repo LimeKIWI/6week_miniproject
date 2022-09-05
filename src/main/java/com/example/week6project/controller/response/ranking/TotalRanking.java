@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// 전체 랭킹 출력 dto
 public class TotalRanking {
     private List<WinCountRankResponseDto> totalWinCountList;
     private List<PointRankResponseDto> totalPointList;

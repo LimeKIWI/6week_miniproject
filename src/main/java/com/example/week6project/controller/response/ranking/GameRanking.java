@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// 게임 랭킹 출력 dto (홀짝, 주사위)
 public class GameRanking {
     private String gameTitle;
     private List<WinCountRankResponseDto> WinCountList;

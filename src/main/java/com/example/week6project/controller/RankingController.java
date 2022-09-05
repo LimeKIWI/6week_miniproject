@@ -16,11 +16,13 @@ public class RankingController {
 
     private final RankingService rankingService;
 
+    // 전체랭킹
     @RequestMapping(value = "/api/ranking", method = RequestMethod.GET)
     public ResponseDto<?> getTotalRanking(HttpServletRequest request) {
         return rankingService.getTotalRanking(request);
     }
 
+    // 게임별 랭킹  (1 : 홀짝, 2 : 주사위, 3 : 로또, 4 : 카운터)
     @RequestMapping(value = "/api/ranking/{id}", method = RequestMethod.GET)
     public ResponseDto<?> getGameRanking(@PathVariable Long id, HttpServletRequest request) {
         return rankingService.getGameRanking(id, request);

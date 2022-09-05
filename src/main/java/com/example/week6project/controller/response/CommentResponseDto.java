@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+// 댓글 출력 dto
 public class CommentResponseDto {
     private String nickName;
     private String content;

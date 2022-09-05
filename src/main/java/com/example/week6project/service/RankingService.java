@@ -37,24 +37,25 @@ public class RankingService {
         if(!chkResponse.isSuccess())
             return chkResponse;
 
+        // 전체 멤버리스트를 이긴횟수 내림차순으로 가져오기
         List<Member> memberWinList = memberRepository.findAllByOrderByTotalWinCountDesc();
         List<WinCountRankResponseDto> countDtolist = new ArrayList<>();
         for(int i = 0, n = memberWinList.size(); i < n && i < 30; i++) {
-            WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()
-                    .rank(i+1)
-                    .nickName(memberWinList.get(i).getNickName())
-                    .totalWinCount(memberWinList.get(i).getTotalWinCount())
+            WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()     // 출력양식 dto
+                    .rank(i+1)                                                                      // 순위
+                    .nickName(memberWinList.get(i).getNickName())                                   // 닉네임
+                    .totalWinCount(memberWinList.get(i).getTotalWinCount())                         // 이긴횟수
                     .build();
             countDtolist.add(winCountRankResponseDto);
         }
-
+        // 전체 맴버리스트를 소지포인트 내림차순으로 가져오기
         List<Member> memberPointList = memberRepository.findAllByOrderByPointDesc();
         List<PointRankResponseDto> pointDtoList = new ArrayList<>();
         for(int i = 0, n = memberPointList.size(); i < n && i < 30; i++) {
-            PointRankResponseDto pointRankResponseDto = PointRankResponseDto.builder()
-                    .rank(i+1)
-                    .nickName(memberPointList.get(i).getNickName())
-                    .totalPoint(memberPointList.get(i).getPoint())
+            PointRankResponseDto pointRankResponseDto = PointRankResponseDto.builder()              // 출력양식 dto
+                    .rank(i+1)                                                                      // 순위
+                    .nickName(memberPointList.get(i).getNickName())                                 // 닉네임
+                    .totalPoint(memberPointList.get(i).getPoint())                                  // 소지포인트
                     .build();
             pointDtoList.add(pointRankResponseDto);
         }
@@ -73,6 +74,7 @@ public class RankingService {
 
         // 홀짝게임
         if(id == 1) {
+            // 이긴횟수별
             List<OddEvenResult> oddWinList = oddEvenResultRepository.findByOrderByWinCountDesc();
             List<WinCountRankResponseDto> oddWinListDto = new ArrayList<>();
             for(int i = 0, n = oddWinList.size(); i < n && i < 30; i++) {
@@ -83,7 +85,7 @@ public class RankingService {
                         .build();
                 oddWinListDto.add(winCountRankResponseDto);
             }
-
+            // 벌어들인 포인트별
             List<OddEvenResult> oddPointList = oddEvenResultRepository.findByOrderByEarnPointDesc();
             List<EarnPointResponseDto> oddEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = oddPointList.size(); i < n && i < 30; i++) {
@@ -103,6 +105,7 @@ public class RankingService {
 
         // 주사위 게임
         if(id == 2) {
+            // 이긴 횟수별
             List<DiceResult> diceResultList = diceResultRepository.findByOrderByWinCountDesc();
             List<WinCountRankResponseDto> diceWinListDto = new ArrayList<>();
             for(int i = 0, n = diceResultList.size(); i < n && i < 30; i++) {
@@ -113,7 +116,7 @@ public class RankingService {
                         .build();
                 diceWinListDto.add(winCountRankResponseDto);
             }
-
+            // 벌어들인 포인트별
             List<DiceResult> dicePointList = diceResultRepository.findByOrderByEarnPointDesc();
             List<EarnPointResponseDto> diceEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = dicePointList.size(); i < n && i < 30; i++) {
@@ -133,6 +136,7 @@ public class RankingService {
 
         // 로또 게임
         if(id == 3) {
+            // 벌어들인 포인트별
             List<LottoResult> lottoResultList = lottoResultRepository.findByOrderByEarnPointDesc();
             List<EarnPointResponseDto> lottoEarnPointListDto = new ArrayList<>();
             for(int i = 0, n = lottoResultList.size(); i < n && i < 30; i++) {
@@ -150,6 +154,7 @@ public class RankingService {
         }
         // 카운터 게임
         if(id == 4) {
+            // 최대로 클릭한 횟수별
             List<CounterResult> counterResultList = counterResultRepository.findByOrderByMaxCountDesc();
             List<MaxCountResponseDto> counterMaxListDto = new ArrayList<>();
             for(int i = 0, n = counterResultList.size(); i < n && i < 30; i++) {

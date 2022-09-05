@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-
+// 게임 결과 출력 dto (홀짝, 주사위)
 public class DefaultGameResponseDto {
     private String result;
     private int winCount;
