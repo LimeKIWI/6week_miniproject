@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// 카운트게임 랭킹 출력 dto
 public class CountRanking {
     private String gameTitle;
     private List<MaxCountResponseDto> maxCountList;
