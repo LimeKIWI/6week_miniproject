@@ -81,7 +81,24 @@ public class LottoService {
     @Transactional
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
+        if(lastId==0){
+            LottoServer nextLottoServer= LottoServer.builder()
+                    .point(3000)
+                    .luckyNum1(0)
+                    .luckyNum2(0)
+                    .luckyNum3(0)
+                    .luckyNum4(0)
+                    .luckyNum4(0)
+                    .luckyNum5(0)
+                    .luckyNum6(0)
+                    .point1st(0)
+                    .point2nd(0)
+                    .point3rd(0)
+                    .build();
 
+            lottoServerRepository.save(nextLottoServer);
+            lastId=1;
+        }
 
         int[] luckyNum=luckyNum();
         lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum);
@@ -102,6 +119,9 @@ public class LottoService {
     @Transactional
     // 제출 번호 저장 및 당첨금 설정
     public ResponseDto<?> saveNum(LottoRequestDto lottoRequestDto, HttpServletRequest request){
+        if(!timeCheck()){
+            return ResponseDto.fail("Unavailable_Time","57분~03분 사이는 정산시간으로 로또구매가 불가능합니다.");
+        }
         long lastId=lottoServerRepository.count();
         if(lastId==0){
             LottoServer nextLottoServer= LottoServer.builder()
@@ -343,7 +363,6 @@ public class LottoService {
     public boolean timeCheck(){
         Date date = new Date();
         int min=date.getMinutes();
-        System.out.println(date);
         if (min < 3||min>57){
             return false;
         }
