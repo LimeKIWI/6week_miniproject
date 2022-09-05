@@ -6,9 +6,11 @@ import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.Lotto;
 import com.example.week6project.domain.LottoServer;
 import com.example.week6project.domain.Member;
+import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.repository.LottoRepository;
 import com.example.week6project.repository.LottoServerRepository;
 import com.example.week6project.repository.MemberRepository;
+import com.example.week6project.repository.results.LottoResultRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,8 @@ public class LottoService {
     private final MemberRepository memberRepository;
     private final LottoRepository lottoRepository;
     private final LottoServerRepository lottoServerRepository;
+
+    private final LottoResultRepository lottoResultRepository;
 
     int lottoPoint = 1000; //로또 금액
 
@@ -191,9 +195,9 @@ public class LottoService {
             if (lotto.getNum1()==luckyNum[6]||lotto.getNum2()==luckyNum[6]||lotto.getNum3()==luckyNum[6]||lotto.getNum4()==luckyNum[6]||lotto.getNum5()==luckyNum[6]||lotto.getNum6()==luckyNum[6]){
                 lotto.plusBonus();
             }
-            System.out.println(lotto.getResult());
+
             lotto.rank();
-            System.out.println(lotto.getResult());
+
         }
     }
 
@@ -233,6 +237,7 @@ public class LottoService {
             List<Lotto> count3rd = lottoRepository.findByResult(3);
             List<Lotto> count4th = lottoRepository.findByResult(4);
             List<Lotto> count5th = lottoRepository.findByResult(5);
+            List<Lotto> count6th = lottoRepository.findByResult(6);
 
 
 
@@ -259,24 +264,27 @@ public class LottoService {
             // 1등부터 당첨금 정산, 구매 총액에서 정산후 남은 금액은 다음 회차로 이월
             for (int i = 0; i < count1st.size(); i++) {
                 Member member = count1st.get(i).getMember();
-                member.addPoint((int) point1st);
-                member.addPoint((int) 15000000/count1st.size());
+                int addpoint = (int) point1st+15000000/count1st.size();
+                member.addPoint(addpoint);
+                lottoResultRepository.findByMember(member).result(1,addpoint);
                 lottoServer.plusPoint((int)-point1st);
                 totalPoint -= point1st;
             }
 
             for (int i = 0; i < count2nd.size(); i++) {
                 Member member = count2nd.get(i).getMember();
-                member.addPoint((int) point2nd);
-                member.addPoint((int) 3000000/count2nd.size());
+                int addpoint=(int)point2nd+3000000/count2nd.size();
+                member.addPoint((int) addpoint);
+                lottoResultRepository.findByMember(member).result(2,addpoint);
                 lottoServer.plusPoint((int)-point2nd);
                 totalPoint -= point2nd;
             }
 
             for (int i = 0; i < count3rd.size(); i++) {
                 Member member = count3rd.get(i).getMember();
-                member.addPoint((int) point3rd);
-                member.addPoint((int) 200000/count3rd.size());
+                int addpoint=(int)point3rd+200000/count3rd.size();
+                member.addPoint((int) addpoint);
+                lottoResultRepository.findByMember(member).result(3,addpoint);
                 lottoServer.plusPoint((int)-point3rd);
                 totalPoint -= point3rd;
             }
@@ -284,11 +292,18 @@ public class LottoService {
             for (int i = 0; i < count4th.size(); i++) {
                 Member member = count4th.get(i).getMember();
                 member.addPoint((int)point4th);
+                lottoResultRepository.findByMember(member).result(4,(int)point4th);
             }
 
             for (int i = 0; i < count5th.size(); i++) {
                 Member member = count5th.get(i).getMember();
                 member.addPoint((int)point5th);
+                lottoResultRepository.findByMember(member).result(5,(int)point5th);
+            }
+
+            for (int i = 0; i < count6th.size(); i++) {
+                Member member = count6th.get(i).getMember();
+                lottoResultRepository.findByMember(member).result(6,0);
             }
 
             int firstMan=1;
@@ -320,7 +335,7 @@ public class LottoService {
 
             lottoServerRepository.save(nextLottoServer);
 
-            // 로또 구매 DB초기화
+
             return lottoResponseDto;
         }
     }

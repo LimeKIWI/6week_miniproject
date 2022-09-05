@@ -1,5 +1,6 @@
 package com.example.week6project.service;
 
+import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
 import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
@@ -107,6 +108,13 @@ public class MemberService {
                 .coutn5th(0)
                 .earnPoint(0)
                 .playCount(0)
+                .build());
+
+        counterResultRepository.save(CounterResult.builder()
+                .member(member)
+                .maxCount(0)
+                .playCount(0)
+                .earnPoint(0)
                 .build());
     }
 
