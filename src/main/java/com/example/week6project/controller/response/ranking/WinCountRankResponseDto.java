@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WinCountRankResponseDto {
+    private int rank;
     private String nickName;
     private int totalWinCount;
 }
