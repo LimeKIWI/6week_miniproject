@@ -84,6 +84,7 @@ Content-Type: application/json
   "passWord": "asdf311"
 }
 
+
 ### oddtest
 POST http://localhost:8080/api/game/oddeven
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzIyNzM0fQ.CeapVej14QBzkLGbRE5DE-630G-Riz0c2um8HWxgExI

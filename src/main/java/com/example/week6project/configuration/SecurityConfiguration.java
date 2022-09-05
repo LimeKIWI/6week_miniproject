@@ -69,7 +69,8 @@ public class SecurityConfiguration {
 
         .and()
         .authorizeRequests()
-            .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
+        .antMatchers("/admin").hasRole("ADMIN")
+        .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
         .anyRequest().permitAll()
 
         .and()

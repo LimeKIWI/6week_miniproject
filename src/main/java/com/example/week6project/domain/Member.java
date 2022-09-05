@@ -1,8 +1,12 @@
 package com.example.week6project.domain;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 @Builder
@@ -43,6 +47,8 @@ public class Member {
     public void addWinCount(int winCount) {
         this.totalWinCount += winCount;
     }
+
+
 
     public void addProfileImg(String url) {
         this.img = url;
