@@ -121,6 +121,11 @@ public class MemberService {
     //회원가입
     @Transactional
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
+        String id = requestDto.getId();
+        String nickName= requestDto.getNickName();
+        if(memberRepository.findById(id).isPresent() || memberRepository.findByNickName(nickName).isPresent())
+            return ResponseDto.fail("BAD_REQUEST", "입력값 중복확인을 다시 해주세요");
+
         Member member = Member.builder()
                 .id(requestDto.getId())
                 .nickName(requestDto.getNickName())
