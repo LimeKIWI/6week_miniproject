@@ -141,7 +141,7 @@ public class MemberService {
                 .passWord(passwordEncoder.encode(requestDto.getPassWord()))
                 .totalWinCount(0)
                 .point(100)
-                .userRole(ROLE_MEMBER)
+                .userRole(ROLE_MEMBER.toString())
                 .build();
         memberRepository.save(member);
 
@@ -216,7 +216,7 @@ public class MemberService {
                 .passWord(passwordEncoder.encode(requestDto.getPassWord()))
                 .totalWinCount(0)
                 .point(100)
-                .userRole(ROLE_ADMIN)
+                .userRole(ROLE_ADMIN.toString())
                 .build();
         memberRepository.save(member);
 
