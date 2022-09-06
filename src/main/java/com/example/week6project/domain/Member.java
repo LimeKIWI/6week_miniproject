@@ -1,5 +1,9 @@
 package com.example.week6project.domain;
 
+import com.example.week6project.domain.results.CounterResult;
+import com.example.week6project.domain.results.DiceResult;
+import com.example.week6project.domain.results.LottoResult;
+import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import lombok.*;
 
@@ -36,6 +40,18 @@ public class Member {
 
     @Column
     private String userRole;
+
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "member")
+    private OddEvenResult oddEvenResult;
+
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "member")
+    private DiceResult diceResult;
+
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "member")
+    private LottoResult lottoResult;
+
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "member")
+    private CounterResult counterResult;
 
     public void addPoint(int point) {
         this.point += point;
