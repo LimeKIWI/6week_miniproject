@@ -120,7 +120,7 @@ public class LottoService {
     // 제출 번호 저장 및 당첨금 설정
     public ResponseDto<?> saveNum(LottoRequestDto lottoRequestDto, HttpServletRequest request){
         if(!timeCheck()){
-            return ResponseDto.fail("Unavailable_Time","57분~03분 사이는 정산시간으로 로또구매가 불가능합니다.");
+            return ResponseDto.success("57분~03분 사이는 정산시간으로 로또구매가 불가능합니다.");
         }
         long lastId=lottoServerRepository.count();
         if(lastId==0){
@@ -151,7 +151,7 @@ public class LottoService {
 
 
         if (member.getPoint()<1000){
-            return ResponseDto.fail("Not Enough Point","로또를 구매하기 위한 포인트가 부족합니다");
+            return ResponseDto.success("로또를 구매하기 위한 포인트가 부족합니다");
         }
         Lotto lotto = Lotto.builder()
                 .member(member)

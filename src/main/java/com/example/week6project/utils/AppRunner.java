@@ -28,6 +28,5 @@ public class AppRunner implements ApplicationRunner {
                     .build();
             memberRepository.save(member);
         }
-        System.out.println("실행시점");
     }
 }
