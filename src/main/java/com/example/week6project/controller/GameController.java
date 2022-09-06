@@ -47,13 +47,13 @@ public class GameController {
 
 
 
-    // 로또 최근 3회차 결과 확인(전체)
+    // 로또 최근 3회차 결과 확인(전체) <미사용>
     @RequestMapping (value = "/api/game/lottoresult", method = RequestMethod.GET)
     public ResponseDto<?> recentLottoResult() {
         return lottoService.lottoResult();
     }
 
-    // 로또 개인 결과 확인
+    // 로또 개인 최근 회차 결과 확인
     @RequestMapping (value = "/api/game/lottomyresult", method = RequestMethod.GET)
     public ResponseDto<?> recentLottoResult(HttpServletRequest request) {
         return lottoService.myLottoResult(request);
