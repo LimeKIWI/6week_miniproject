@@ -109,10 +109,10 @@ public class UserService {
 
         // 기존 토큰 삭제
 
-        refreshTokenRepository.delete(refreshTokenRepository.findByMember(member).get());
+        refreshTokenRepository.delete(refreshTokenRepository.findByMember(updateMember).get());
 
         // 토큰 재생성
-        TokenDto tokenDto = tokenProvider.generateTokenDto(member);
+        TokenDto tokenDto = tokenProvider.generateTokenDto(updateMember);
 
         //헤더에 반환 to FE
         response.addHeader("Authorization","Bearer "+tokenDto.getAccessToken());

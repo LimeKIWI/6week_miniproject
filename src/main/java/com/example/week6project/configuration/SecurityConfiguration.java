@@ -35,6 +35,13 @@ public class SecurityConfiguration {
   private final AuthenticationEntryPointException authenticationEntryPointException;
   private final AccessDeniedHandlerException accessDeniedHandlerException;
 
+//  @Bean
+//  public WebSecurityCustomizer webSecurityCustomizer() {
+//    // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
+//    return (web) -> web.ignoring()
+//            .antMatchers("/h2-console/**");
+//  }
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -61,12 +68,12 @@ public class SecurityConfiguration {
             .authorizeRequests()
             .antMatchers("/api/adminPage", "/api/adminPage/**").hasRole("ADMIN")
             .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
-            .antMatchers("/h2-console/**").permitAll()
             .antMatchers("/api/member/**").permitAll()
             .anyRequest().authenticated()
 
             .and()
             .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
+
 
     return http.build();
   }
