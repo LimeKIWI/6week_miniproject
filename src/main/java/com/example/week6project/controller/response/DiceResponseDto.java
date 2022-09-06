@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-// 댓글 출력 dto
-public class CommentResponseDto {
-    private Long id;
-    private String nickName;
-    private String content;
+@Builder
+@Getter
+// 게임 결과 출력 dto (홀짝, 주사위)
+public class DiceResponseDto {
+    private int result;
+    private int winCount;
+    private int getPoint;
+    private int nowPoint;
 }

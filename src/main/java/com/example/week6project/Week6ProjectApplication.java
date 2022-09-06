@@ -10,7 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableScheduling
 @SpringBootApplication
 public class Week6ProjectApplication {
-
+    public static final String ALLOWED_METHOD_NAMES = "GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,PATCH";
+    public static final String ALLOWED_HEADERS = "Origin,Content-Type,X-Auth-Token,accept";
     public static void main(String[] args) {
         SpringApplication.run(Week6ProjectApplication.class, args);
     }
@@ -23,6 +24,9 @@ public class Week6ProjectApplication {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
                         .exposedHeaders("Authorization", "RefreshToken")
+                        .allowedMethods("*")
+                        .allowedHeaders("*")
+                        .allowCredentials(true)
                         .maxAge(3600);
             }
         };

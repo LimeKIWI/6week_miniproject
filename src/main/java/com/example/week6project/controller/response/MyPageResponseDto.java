@@ -14,6 +14,6 @@ public class MyPageResponseDto {
     private int point;
     private int winCountOfOddEven;
     private int winCountOfDice;
-    private int winCountOfLotto;
+    private int earnPointOfLotto;
     private int highestCountOfCounter;
 }
