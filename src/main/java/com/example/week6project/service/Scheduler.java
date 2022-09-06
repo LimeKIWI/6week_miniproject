@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class Scheduler {
     private final LottoService lottoService;
 
+
     @Scheduled(cron = "0 0 * * * *")
     @Transactional
     public void autoLotto(){
