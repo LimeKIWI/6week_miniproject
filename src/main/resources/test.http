@@ -1,0 +1,54 @@
+### signup
+POST http://localhost:8080/api/member/signup
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf",
+  "passWord": "asdf",
+  "birthDate" : "20030903",
+  "nickName": "asdf"
+}
+
+### login
+POST http://localhost:8080/api/member/login
+accept: */*
+Content-Type: application/json
+
+{
+  "id": "asdf",
+  "passWord": "asdf"
+}
+
+### lottoTest
+POST http://localhost:8080/api/game/lotto
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDgzMzUyfQ.rhRW5nsdrm9pJgllEWK0t8zyklH18wcXUX-PskwefdE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNzczNTJ9.0YGoVy-k5Mi5A99bYpMVj6pHBjR2xjuI1gRKsjRITj0
+accept: */*
+Content-Type: application/json
+
+{
+  "num1":1,
+  "num2":2,
+  "num3":3,
+  "num4":4,
+  "num5":5,
+  "num6":6
+}
+
+### lottoresult
+GET http://localhost:8080/api/game/lottotest
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDgzMzUyfQ.rhRW5nsdrm9pJgllEWK0t8zyklH18wcXUX-PskwefdE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNzczNTJ9.0YGoVy-k5Mi5A99bYpMVj6pHBjR2xjuI1gRKsjRITj0
+accept: */*
+Content-Type: application/json
+
+### LottoResult
+GET http://localhost:8080/api/game/lottoresult
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDc2MzQxfQ.wsyFQLK9n3nG5zrlfUQac0ONEXnK-2rbs7vD4peGK-w
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNzAzNDF9.o9GjlvShHmxH70D5XTXZikkK4kqNrbTlSVOC4b0VPCY
+
+### LottoResult
+GET http://localhost:8080/api/game/lottomyresult
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDgzMzUyfQ.rhRW5nsdrm9pJgllEWK0t8zyklH18wcXUX-PskwefdE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNzczNTJ9.0YGoVy-k5Mi5A99bYpMVj6pHBjR2xjuI1gRKsjRITj0

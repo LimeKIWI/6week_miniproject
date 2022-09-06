@@ -22,13 +22,16 @@ public class UserController {
         return userService.getMyPage(request);
     }
 
+    /*
     // 프로필 이미지 업로드
     @RequestMapping (value = "/api/user/image", method = RequestMethod.PATCH)
     public ResponseDto<?> imageUpload(@RequestPart("image") MultipartFile multipartFile, HttpServletRequest request) {
         return userService.profileImageUpload(multipartFile, request);
     }
 
-    // 회원정보수정
+     */
+
+    // 회원정보수정 (닉네임)
     @RequestMapping (value = "/api/user", method = RequestMethod.PATCH)
     public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request, HttpServletResponse response) {
         return userService.updateInfo(nicknameRequestDto, request, response);

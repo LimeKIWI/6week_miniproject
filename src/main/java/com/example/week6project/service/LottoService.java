@@ -212,6 +212,7 @@ public class LottoService {
     public LottoResponseDto lottoFinal(long lastId){
         List<Lotto> lottoList=lottoRepository.findByLottoServerId(lastId);
         LottoServer lottoServer=lottoServerRepository.findById(lastId).get();
+        // DB에서 구매 총액 가져오기
         long totalPoint=lottoServer.getPoint();
         LottoResponseDto lottoResponseDto=new LottoResponseDto();
 
@@ -222,14 +223,8 @@ public class LottoService {
                     .member1st(0)
                     .member2rd(0)
                     .member3nd(0)
-                    .build();
-
-
-        }
+                    .build();        }
         else {
-            // DB에서 구매 총액 가져오기
-
-
             // 등수 확인
             List<Lotto> count1st = lottoRepository.findAllByLottoServerIdAndResult(lastId,1);
             List<Lotto> count2nd = lottoRepository.findAllByLottoServerIdAndResult(lastId,2);
@@ -402,7 +397,7 @@ public class LottoService {
     }
 
     //로또 개인 결과 확인(개인)
-    public ResponseDto<?> myLottoResult(HttpServletRequest request){
+    public ResponseDto<?> myLottoAllResult(HttpServletRequest request){
         ResponseDto<?> chkResponse = gameService.validateCheck(request);
         if (!chkResponse.isSuccess())
             return chkResponse;
@@ -466,6 +461,74 @@ public class LottoService {
         }
         return ResponseDto.success(responseDtoList);
     }
+
+    //로또 개인 결과 확인(개인)
+    public ResponseDto<?> myLottoResult(HttpServletRequest request){
+        // 요청보낸 유저 확인
+        ResponseDto<?> chkResponse = gameService.validateCheck(request);
+        if (!chkResponse.isSuccess())
+            return chkResponse;
+
+        Member memberData =  (Member) chkResponse.getData();
+        String myId=memberData.getId();
+        List<Lotto> myLottoList=lottoRepository.findAllByMemberId(myId);
+        List<LottoMyResultResponseDto> responseDtoList = new ArrayList<>();
+
+
+        for (int i = 0; i < myLottoList.size(); i++) {
+            long no=myLottoList.get(i).getLottoServer().getId();
+            LottoServer temp_server=lottoServerRepository.findById(no).get();
+            // 추첨 완료된 Lotto
+            if(temp_server.getLuckyNum1()!=0) {
+                int[] myNumList = new int[6];
+                myNumList[0] = myLottoList.get(i).getNum1();
+                myNumList[1] = myLottoList.get(i).getNum2();
+                myNumList[2] = myLottoList.get(i).getNum3();
+                myNumList[3] = myLottoList.get(i).getNum4();
+                myNumList[4] = myLottoList.get(i).getNum5();
+                myNumList[5] = myLottoList.get(i).getNum6();
+
+                int[] luckyNumList = new int[6];
+                luckyNumList[0] = temp_server.getLuckyNum1();
+                luckyNumList[1] = temp_server.getLuckyNum2();
+                luckyNumList[2] = temp_server.getLuckyNum3();
+                luckyNumList[3] = temp_server.getLuckyNum4();
+                luckyNumList[4] = temp_server.getLuckyNum5();
+                luckyNumList[5] = temp_server.getLuckyNum6();
+
+                LottoMyResultResponseDto temp_dto = LottoMyResultResponseDto.builder()
+                        .no((int) no)
+                        .luckyNum(luckyNumList)
+                        .bonusNum(temp_server.getBonusNum())
+                        .MyNum(myNumList)
+                        .rank((int) myLottoList.get(i).getResult())
+                        .earnPoint(myLottoList.get(i).getEarnPoint())
+                        .build();
+                responseDtoList.add(temp_dto);
+            }
+            // 추첨이 진행되지않은 Lotto
+            else {
+                int[] myNumList = new int[6];
+                myNumList[0] = myLottoList.get(i).getNum1();
+                myNumList[1] = myLottoList.get(i).getNum2();
+                myNumList[2] = myLottoList.get(i).getNum3();
+                myNumList[3] = myLottoList.get(i).getNum4();
+                myNumList[4] = myLottoList.get(i).getNum5();
+                myNumList[5] = myLottoList.get(i).getNum6();
+                LottoMyResultResponseDto temp_dto = LottoMyResultResponseDto.builder()
+                        .no((int) no)
+                        .luckyNum("아직 실행되지않은 회차입니다.")
+                        .bonusNum(temp_server.getBonusNum())
+                        .MyNum(myNumList)
+                        .rank("아직 실행되지않은 회차입니다.")
+                        .build();
+                responseDtoList.add(temp_dto);
+            }
+
+        }
+        return ResponseDto.success(responseDtoList);
+    }
+
 
     public boolean timeCheck(){
         Date date = new Date();
