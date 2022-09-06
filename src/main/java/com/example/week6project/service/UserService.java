@@ -34,7 +34,7 @@ import java.util.Optional;
 public class UserService {
 
     private final TokenProvider tokenProvider;
-    private final AmazonS3Service amazonS3Service;
+   // private final AmazonS3Service amazonS3Service;
     private final OddEvenResultRepository oddEvenResultRepository;
     private final MemberRepository memberRepository;
     private final DiceResultRepository diceResultRepository;
@@ -69,7 +69,7 @@ public class UserService {
         return ResponseDto.success(myPageResponseDto);
     }
 
-
+    /*
     // 프로필 이미지 업로드
     @Transactional
     public ResponseDto<?> profileImageUpload(MultipartFile multipartFile, HttpServletRequest request) {
@@ -89,6 +89,8 @@ public class UserService {
 
         return ResponseDto.success(updateMember.getImg());
     }
+
+     */
 
 
 

@@ -38,14 +38,14 @@ public class GameController {
         return lottoService.saveNum(lottoRequestDto, request);
     }
 
-    /*
+
     // TEST 로또 강제실행
     @RequestMapping (value = "/api/game/lottotest", method = RequestMethod.GET)
     public ResponseDto<?> testLotto() {
         return lottoService.runLotto();
     }
 
-     */
+
 
     // 로또 최근 3회차 결과 확인(전체)
     @RequestMapping (value = "/api/game/lottoresult", method = RequestMethod.GET)
