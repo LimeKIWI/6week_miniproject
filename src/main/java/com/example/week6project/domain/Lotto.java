@@ -47,6 +47,9 @@ public class Lotto {
     @Column
     private long result;
 
+    @Column
+    private int earnPoint;
+
 
     public void plusOne(){
         this.result+=1;
@@ -74,6 +77,9 @@ public class Lotto {
         else{
             this.result=6;
         }
+    }
+    public void setEarnPoint(int point){
+        this.earnPoint+=point;
     }
 
 }
