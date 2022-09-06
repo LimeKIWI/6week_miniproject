@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROJECT_ROOT="/home/ubuntu/app"
-JAR_FILE="$PROJECT_ROOT/Week6-Project-0.0.1-SNAPSHOT.jar"
+JAR_FILE="$PROJECT_ROOT/spring-app.jar"
 
 DEPLOY_LOG="$PROJECT_ROOT/deploy.log"
 
