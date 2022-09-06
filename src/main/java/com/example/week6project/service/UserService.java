@@ -117,7 +117,6 @@ public class UserService {
         //헤더에 반환 to FE
         response.addHeader("Authorization","Bearer "+tokenDto.getAccessToken());
         response.addHeader("RefreshToken", tokenDto.getRefreshToken());
-        response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
 
         return ResponseDto.success(MyPageResponseDto.builder()
                 .id(updateMember.getId())
