@@ -1,8 +1,6 @@
 package com.example.week6project.utils;
 
-import com.example.week6project.domain.LottoServer;
 import com.example.week6project.domain.Member;
-import com.example.week6project.repository.LottoServerRepository;
 import com.example.week6project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AppRunner implements ApplicationRunner {
     private final MemberRepository memberRepository;
-    private final LottoServerRepository lottoServerRepository;
 
     @Override
     @Transactional
@@ -31,25 +28,5 @@ public class AppRunner implements ApplicationRunner {
                     .build();
             memberRepository.save(member);
         }
-
-        if(lottoServerRepository.count()==0){
-            LottoServer firstLottoServer= LottoServer.builder()
-                    .point(3000)
-                    .luckyNum1(0)
-                    .luckyNum2(0)
-                    .luckyNum3(0)
-                    .luckyNum4(0)
-                    .luckyNum4(0)
-                    .luckyNum5(0)
-                    .luckyNum6(0)
-                    .bonusNum(0)
-                    .point1st(0)
-                    .point2nd(0)
-                    .point3rd(0)
-                    .build();
-
-            lottoServerRepository.save(firstLottoServer);
-        }
-
     }
 }

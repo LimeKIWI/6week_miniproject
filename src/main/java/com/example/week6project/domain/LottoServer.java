@@ -36,9 +36,6 @@ public class LottoServer {
     private int luckyNum6;
 
     @Column
-    private int bonusNum;
-
-    @Column
     private int point1st;
 
     @Column
@@ -60,13 +57,6 @@ public class LottoServer {
         this.luckyNum4=luckyNum[3];
         this.luckyNum5=luckyNum[4];
         this.luckyNum6=luckyNum[5];
-        this.bonusNum=luckyNum[6];
-    }
-
-    public void setPoint(long point1st,long point2nd, long point3rd){
-        this.point1st=(int) point1st;
-        this.point2nd=(int) point2nd;
-        this.point3rd=(int) point3rd;
 
     }
 }

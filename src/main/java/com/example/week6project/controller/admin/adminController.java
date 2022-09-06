@@ -30,13 +30,9 @@ public class adminController {
     }
 
 
-    /*
-
     //TEST- Admin생성
     @RequestMapping(value = "/api/member/admin", method = RequestMethod.POST)
     public com.example.week6project.dto.ResponseDto<?> signup(@RequestBody @Valid MemberRequestDto requestDto) {
         return memberService.createAdmin(requestDto);
     }
-
-     */
 }
