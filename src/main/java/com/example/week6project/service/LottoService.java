@@ -91,8 +91,6 @@ public class LottoService {
     @Transactional
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
-
-
         int[] luckyNum=luckyNum();
         lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum);
         checkLotto(lastId,luckyNum);
@@ -213,20 +211,24 @@ public class LottoService {
     @Transactional
     public LottoResponseDto lottoFinal(long lastId){
         List<Lotto> lottoList=lottoRepository.findByLottoServerId(lastId);
+        LottoServer lottoServer=lottoServerRepository.findById(lastId).get();
+        long totalPoint=lottoServer.getPoint();
+        LottoResponseDto lottoResponseDto=new LottoResponseDto();
+
         //구매자가 0명일때
         if(lottoList.size()==0){
-            LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
+            lottoResponseDto = LottoResponseDto.builder()
                     .money1st(0)
                     .member1st(0)
                     .member2rd(0)
                     .member3nd(0)
                     .build();
-            return lottoResponseDto;
+
+
         }
         else {
             // DB에서 구매 총액 가져오기
-            LottoServer lottoServer=lottoServerRepository.findById(lastId).get();
-            long totalPoint=lottoServer.getPoint();
+
 
             // 등수 확인
             List<Lotto> count1st = lottoRepository.findAllByLottoServerIdAndResult(lastId,1);
@@ -315,34 +317,31 @@ public class LottoService {
                 Member member = count6th.get(i).getMember();
                 lottoResultRepository.findByMember(member).result(6,0);
             }
-
-            LottoResponseDto lottoResponseDto = LottoResponseDto.builder()
+            lottoResponseDto = LottoResponseDto.builder()
                     .money1st((int) point1st)
                     .member1st(count1st.size())
                     .member2rd(count2nd.size())
                     .member3nd(count3rd.size())
                     .build();
 
-            // +남은 totalPoint는 DB에 저장
-            LottoServer nextLottoServer= LottoServer.builder()
-                    .point((int) totalPoint)
-                    .luckyNum1(0)
-                    .luckyNum2(0)
-                    .luckyNum3(0)
-                    .luckyNum4(0)
-                    .luckyNum4(0)
-                    .luckyNum5(0)
-                    .luckyNum6(0)
-                    .point1st(0)
-                    .point2nd(0)
-                    .point3rd(0)
-                    .build();
-
-            lottoServerRepository.save(nextLottoServer);
-
-
-            return lottoResponseDto;
         }
+        // +남은 totalPoint는 DB에 저장
+        LottoServer nextLottoServer= LottoServer.builder()
+                .point((int) totalPoint)
+                .luckyNum1(0)
+                .luckyNum2(0)
+                .luckyNum3(0)
+                .luckyNum4(0)
+                .luckyNum4(0)
+                .luckyNum5(0)
+                .luckyNum6(0)
+                .point1st(0)
+                .point2nd(0)
+                .point3rd(0)
+                .build();
+
+        lottoServerRepository.save(nextLottoServer);
+        return lottoResponseDto;
     }
 
     //로또 최근 3회차 결과 확인(전체)
