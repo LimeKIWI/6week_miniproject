@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 // 댓글 출력 dto
 public class CommentResponseDto {
+    private Long id;
     private String nickName;
     private String content;
 }

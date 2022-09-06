@@ -222,6 +222,7 @@ public class CommentService {
                 List<OddEvenComment> list1 = oddEvenCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(OddEvenComment comment : list1) {
                    CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                           .id(comment.getId())
                            .nickName(comment.getMember().getNickName())
                            .content(comment.getContent())
                            .build();
@@ -233,6 +234,7 @@ public class CommentService {
                 List<DiceComment> list2 = diceCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(DiceComment comment : list2) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                            .id(comment.getId())
                             .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
@@ -244,6 +246,7 @@ public class CommentService {
                 List<LottoComment> list3 = lottoCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(LottoComment comment : list3) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                            .id(comment.getId())
                             .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
@@ -255,6 +258,7 @@ public class CommentService {
                 List<CounterComment> list4 = counterCommentRepository.findAllByOrderByModifiedAtDesc();
                 for(CounterComment comment : list4) {
                     CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                            .id(comment.getId())
                             .nickName(comment.getMember().getNickName())
                             .content(comment.getContent())
                             .build();
