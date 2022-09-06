@@ -32,4 +32,10 @@ public class UserController {
     public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request) {
         return userService.updateInfo(nicknameRequestDto, request);
     }
+
+    // 회원탈퇴 withDrawal
+    @RequestMapping (value = "/api/user", method = RequestMethod.DELETE)
+    public ResponseDto<?> withdrawals(HttpServletRequest request) {
+        return userService.withDrawal(request);
+    }
 }

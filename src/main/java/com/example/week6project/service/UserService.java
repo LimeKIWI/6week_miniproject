@@ -4,12 +4,14 @@ import com.example.week6project.controller.response.MyPageResponseDto;
 import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.ImageMapper;
 import com.example.week6project.domain.Member;
+import com.example.week6project.domain.comments.Comment;
 import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
 import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
 import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import com.example.week6project.repository.MemberRepository;
+import com.example.week6project.repository.comments.CommentRepository;
 import com.example.week6project.repository.results.CounterResultRepository;
 import com.example.week6project.repository.results.DiceResultRepository;
 import com.example.week6project.repository.results.LottoResultRepository;
@@ -21,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +37,8 @@ public class UserService {
     private final DiceResultRepository diceResultRepository;
     private final CounterResultRepository counterResultRepository;
     private final LottoResultRepository lottoResultRepository;
+
+    private final CommentRepository commentRepository;
 
     // 마이페이지 불러오기
     public ResponseDto<?> getMyPage(HttpServletRequest request) {
@@ -106,6 +112,28 @@ public class UserService {
                 .earnPointOfLotto(lottoResult.getEarnPoint())
                 .highestCountOfCounter(counterResult.getMaxCount())
                 .build());
+    }
+
+    // 회원탈퇴
+    @Transactional
+    public ResponseDto<?> withDrawal(HttpServletRequest request) {
+        // 회원정보 받아오기
+        ResponseDto<?> chkResponse =  validateCheck(request);
+        if(!chkResponse.isSuccess())
+            return chkResponse;
+        Member member = (Member) chkResponse.getData();
+
+        Member getMember = memberRepository.findById(member.getId()).get();                 // 실제 회원 찾기
+        Optional<?> updateMember = memberRepository.findByNickName("탈퇴한 사용자입니다.");    // temp회원 찾기
+
+        List<Comment> comments = commentRepository.findAllByMember(getMember);              // 회원이 쓴 댓글 찾기
+        for(Comment comment : comments) {
+            comment.setMember((Member) updateMember.get());         //  temp회원으로 댓글 member 교체
+        }
+
+        tokenProvider.deleteRefreshToken(getMember);
+        memberRepository.deleteById(getMember.getId());             // 회원 삭제
+        return ResponseDto.success("탈퇴 성공");
     }
 
 

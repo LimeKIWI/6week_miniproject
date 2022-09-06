@@ -103,8 +103,8 @@ accept: */*
 
 ### commentPostTest
 POST http://localhost:8080/api/comment?gameId=1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQ0MDkwfQ.M1iW_lxQKe4WMhJVGWyXWdEXA04uqRTM7y5i0tMrsjY
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwMzgwOTB9.D_YOHzCqfjfdYO3o6cYOLeAqmKu2mwEeSDGBBdFJchU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDU1NzI3fQ.jajZ9Y_WAfKJT8dUl2P1_grSwJOhfCns7KsxWoZ48vE
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNDk3Mjd9.JYFKhKtYr7PFfpatJeAqUUub5mSjjkcZrfc6JH8h1Dc
 accept: */*
 Content-Type: application/json
 
@@ -154,6 +154,12 @@ accept: */*
 GET http://localhost:8080/api/ranking/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyNTIyfQ.OU8cL_xqFQEvj7FHcDzByUp7JH2yhLOJeSeiL9Uz3zE
 RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDY1MjJ9.OzOAyfF96l1SirtorevRQgVMTz2i4ozV4-m7TR8q040
+accept: */*
+
+### WithdrawalTest
+DELETE http://localhost:8080/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDU1NjM0fQ.rsf96HjmhbperpDkOLKoqlPw_ICkC19bc-oxoaC4824
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNDk2MzR9.visbqnXjT4Q1FH7E4vbdKH-gauX25lIMwUTyW0yaX8g
 accept: */*
 
 ###Test
