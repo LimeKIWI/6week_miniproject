@@ -24,6 +24,8 @@ public class Week6ProjectApplication {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
                         .exposedHeaders("Authorization", "RefreshToken")
+                        .allowedMethods("*")
+                        .allowedHeaders("*")
                         .allowCredentials(true)
                         .maxAge(3600);
             }
