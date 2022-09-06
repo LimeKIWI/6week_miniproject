@@ -69,9 +69,9 @@ public class RankingService {
         }
 
         return ResponseDto.success(TotalRanking.builder()
-                        .totalWinCountList(countDtolist)
-                        .totalPointList(pointDtoList)
-                        .build());
+                .totalWinCountList(countDtolist)
+                .totalPointList(pointDtoList)
+                .build());
     }
 
     // 게임별 랭킹
@@ -156,9 +156,9 @@ public class RankingService {
                 lottoEarnPointListDto.add(earnPointResponseDto);
             }
             return ResponseDto.success(LottoRanking.builder()
-                     .gameTitle("로또게임")
-                     .earnPointList(lottoEarnPointListDto)
-                     .build());
+                    .gameTitle("로또게임")
+                    .earnPointList(lottoEarnPointListDto)
+                    .build());
         }
         // 카운터 게임
         if(id == 4) {
