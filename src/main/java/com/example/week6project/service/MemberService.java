@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -225,5 +226,15 @@ public class MemberService {
 
         return ResponseDto.success("회원가입 성공");
     }
+
+    // 유저 권한 확인
+    public ResponseDto<?> isAdmin(HttpServletRequest request) {
+        String str = tokenProvider.getAuthentication(request).getAuthorities().toString();
+
+        if(str.equals("[ROLE_ADMIN]"))
+            return ResponseDto.success(true);
+        return ResponseDto.success(false);
+    }
+
 
 }

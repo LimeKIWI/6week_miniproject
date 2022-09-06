@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -42,5 +43,11 @@ public class MemberController {
     @RequestMapping(value = "/api/member/login", method = RequestMethod.POST)
     public ResponseDto<?> login(@RequestBody @Valid LoginRequestDto requestDto, HttpServletResponse response){
         return memberService.login(requestDto, response);
+    }
+
+    // 어드민 체크
+    @RequestMapping(value = "/api/member/roleCheck", method = RequestMethod.GET)
+    public ResponseDto<?> isAdmin(HttpServletRequest request) {
+        return memberService.isAdmin(request);
     }
 }
