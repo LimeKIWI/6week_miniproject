@@ -4,7 +4,8 @@ import com.example.week6project.controller.request.CounterRequestDto;
 import com.example.week6project.controller.request.DiceRequestDto;
 import com.example.week6project.controller.request.OddEvenRequestDto;
 import com.example.week6project.controller.response.CounterResponseDto;
-import com.example.week6project.controller.response.DefaultGameResponseDto;
+import com.example.week6project.controller.response.DiceResponseDto;
+import com.example.week6project.controller.response.OddEvenResponseDto;
 import com.example.week6project.controller.response.ResponseDto;
 import com.example.week6project.domain.Member;
 import com.example.week6project.domain.results.CounterResult;
@@ -80,14 +81,14 @@ public class GameService {
 
 
         // 게임결과 출력
-        DefaultGameResponseDto defaultGameResponseDto = DefaultGameResponseDto.builder()
+        OddEvenResponseDto oddEvenResponseDto = OddEvenResponseDto.builder()
                 .result(result)
                 .winCount(oddEvenResult.getWinCount())
                 .getPoint(point)
                 .nowPoint(updateMember.getPoint())
                 .build();
 
-        return ResponseDto.success(defaultGameResponseDto);
+        return ResponseDto.success(oddEvenResponseDto);
     }
 
 
@@ -122,10 +123,8 @@ public class GameService {
 
         // 게임 시작
         int winCount = 0, point = 0;
-        String result = "실패";
         int generateNum = (int)Math.floor(Math.random()*6)+1;
         if(generateNum == diceRequestDto.getNumber()) {
-            result = "성공";
             winCount = 1;
             point = bettingPoint* DICE_MAGNIFICATION;
             updateMember.addPoint(point);       // 이겼다면 포인트 추가
@@ -134,14 +133,14 @@ public class GameService {
         diceResult.result(winCount,point);   // 포인트및 결과 저장
 
         // 게임결과 출력
-        DefaultGameResponseDto defaultGameResponseDto = DefaultGameResponseDto.builder()
-                .result(result)
+        DiceResponseDto diceResponseDto = DiceResponseDto.builder()
+                .result(generateNum)
                 .winCount(diceResult.getWinCount())
                 .getPoint(point)
                 .nowPoint(updateMember.getPoint())
                 .build();
 
-        return ResponseDto.success(defaultGameResponseDto);
+        return ResponseDto.success(diceResponseDto);
 
     }
 
