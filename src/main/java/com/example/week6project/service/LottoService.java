@@ -108,12 +108,16 @@ public class LottoService {
     @Transactional
     // 제출 번호 저장 및 당첨금 설정
     public ResponseDto<?> saveNum(LottoRequestDto lottoRequestDto, HttpServletRequest request){
+        // 구매 시간 확인
         if(!timeCheck()){
             return ResponseDto.success("57분~03분 사이는 정산시간으로 로또구매가 불가능합니다.");
         }
-        long lastId=lottoServerRepository.count();
 
+        // 구매 회차 확인
+        long lastId=lottoServerRepository.count();
         LottoServer nowSever=lottoServerRepository.findById(lastId).get();
+
+        // 구매자 확인
         ResponseDto<?> chkResponse = gameService.validateCheck(request);
         if (!chkResponse.isSuccess())
             return chkResponse;
@@ -121,22 +125,45 @@ public class LottoService {
         Member memberData =  (Member) chkResponse.getData();
         Member member = memberRepository.findById(memberData.getId()).get();
 
-
+        // 구매 금액 지불가능여부 확인
         if (member.getPoint()<1000){
             return ResponseDto.success("로또를 구매하기 위한 포인트가 부족합니다");
         }
-        Lotto lotto = Lotto.builder()
-                .member(member)
-                .lottoServer(nowSever)
-                .num1(lottoRequestDto.getNum1())
-                .num2(lottoRequestDto.getNum2())
-                .num3(lottoRequestDto.getNum3())
-                .num4(lottoRequestDto.getNum4())
-                .num5(lottoRequestDto.getNum5())
-                .num6(lottoRequestDto.getNum6())
-                .result(0)
-                .earnPoint(0)
-                .build();
+
+        //구매 정보 저장
+        Lotto lotto;
+
+        // 번호 자동 선택
+        if(lottoRequestDto.getNum1()==0){
+            int[] randomNum=luckyNum();
+            lotto = Lotto.builder()
+                    .member(member)
+                    .lottoServer(nowSever)
+                    .num1(randomNum[0])
+                    .num2(randomNum[1])
+                    .num3(randomNum[2])
+                    .num4(randomNum[3])
+                    .num5(randomNum[4])
+                    .num6(randomNum[5])
+                    .result(0)
+                    .earnPoint(0)
+                    .build();
+        }
+        // 번호 수동 선택
+        else {
+            lotto = Lotto.builder()
+                    .member(member)
+                    .lottoServer(nowSever)
+                    .num1(lottoRequestDto.getNum1())
+                    .num2(lottoRequestDto.getNum2())
+                    .num3(lottoRequestDto.getNum3())
+                    .num4(lottoRequestDto.getNum4())
+                    .num5(lottoRequestDto.getNum5())
+                    .num6(lottoRequestDto.getNum6())
+                    .result(0)
+                    .earnPoint(0)
+                    .build();
+        }
 
         member.addPoint(-LOTTO_POINT);
         int[] numList=new int[6];
@@ -470,7 +497,18 @@ public class LottoService {
         // 멤버 객체 받기
         Member memberData =  (Member) chkResponse.getData();
         String myId=memberData.getId();
-        List<Lotto> myLottoList=lottoRepository.findAllByMemberId(myId);
+        List<Lotto> temp_myLottoList=lottoRepository.findAllByMemberId(myId);
+        if(temp_myLottoList.size()==0){
+            return ResponseDto.success("구매한 로또가 없습니다.");
+        }
+        // 멤버가 구매한 로또중 가장 최근 회차 찾기
+        long index=temp_myLottoList.get(0).getLottoServer().getId();
+        for (int i = 0; i < temp_myLottoList.size(); i++) {
+            if(index<temp_myLottoList.get(i).getLottoServer().getId()){
+                index=temp_myLottoList.get(i).getLottoServer().getId();
+            }
+        }
+        List<Lotto> myLottoList=lottoRepository.findAllByLottoServerId(index);
         List<LottoMyResultResponseDto> responseDtoList = new ArrayList<>();
 
 
