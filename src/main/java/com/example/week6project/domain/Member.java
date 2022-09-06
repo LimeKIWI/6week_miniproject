@@ -1,12 +1,9 @@
 package com.example.week6project.domain;
 
+import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 @Builder
@@ -48,9 +45,11 @@ public class Member {
         this.totalWinCount += winCount;
     }
 
-
-
     public void addProfileImg(String url) {
         this.img = url;
+    }
+
+    public void updateNickname(NicknameDuplicateCheckRequestDto requestDto) {
+        this.nickName = requestDto.getNickName();
     }
 }

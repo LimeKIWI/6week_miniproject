@@ -46,8 +46,14 @@ public class MemberController {
     }
 
     // 어드민 체크
-    @RequestMapping(value = "/api/member/roleCheck", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/roleCheck", method = RequestMethod.GET)
     public ResponseDto<?> isAdmin(HttpServletRequest request) {
         return memberService.isAdmin(request);
+    }
+
+    // 로그아웃
+    @RequestMapping(value = "/api/logout", method = RequestMethod.POST)
+    public ResponseDto<?> logout(HttpServletRequest request) {
+        return memberService.logout(request);
     }
 }
