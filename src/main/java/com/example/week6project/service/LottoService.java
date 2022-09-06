@@ -91,24 +91,7 @@ public class LottoService {
     @Transactional
     public ResponseDto<?> runLotto(){
         long lastId=lottoServerRepository.count(); //로또 회차 구하기
-        if(lastId==0){
-            LottoServer nextLottoServer= LottoServer.builder()
-                    .point(3000)
-                    .luckyNum1(0)
-                    .luckyNum2(0)
-                    .luckyNum3(0)
-                    .luckyNum4(0)
-                    .luckyNum4(0)
-                    .luckyNum5(0)
-                    .luckyNum6(0)
-                    .point1st(0)
-                    .point2nd(0)
-                    .point3rd(0)
-                    .build();
 
-            lottoServerRepository.save(nextLottoServer);
-            lastId=1;
-        }
 
         int[] luckyNum=luckyNum();
         lottoServerRepository.findById(lastId).get().setLuckyNum(luckyNum);
@@ -133,24 +116,7 @@ public class LottoService {
             return ResponseDto.success("57분~03분 사이는 정산시간으로 로또구매가 불가능합니다.");
         }
         long lastId=lottoServerRepository.count();
-        if(lastId==0){
-            LottoServer nextLottoServer= LottoServer.builder()
-                    .point(3000)
-                    .luckyNum1(0)
-                    .luckyNum2(0)
-                    .luckyNum3(0)
-                    .luckyNum4(0)
-                    .luckyNum4(0)
-                    .luckyNum5(0)
-                    .luckyNum6(0)
-                    .point1st(0)
-                    .point2nd(0)
-                    .point3rd(0)
-                    .build();
 
-            lottoServerRepository.save(nextLottoServer);
-            lastId=1;
-        }
         LottoServer nowSever=lottoServerRepository.findById(lastId).get();
         ResponseDto<?> chkResponse = gameService.validateCheck(request);
         if (!chkResponse.isSuccess())
