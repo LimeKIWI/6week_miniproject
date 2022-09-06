@@ -39,25 +39,12 @@ public class GameController {
     }
 
 
-    // TEST 로또 강제실행
-    @RequestMapping (value = "/api/game/lottotest", method = RequestMethod.GET)
-    public ResponseDto<?> testLotto() {
-        return lottoService.runLotto();
-    }
+//    // TEST 로또 결과
+//    @RequestMapping (value = "/api/game/lottotest", method = RequestMethod.GET)
+//    public ResponseDto<?> testLotto() {
+//        return lottoService.runLotto();
+//    }
 
-
-
-    // 로또 최근 3회차 결과 확인(전체)
-    @RequestMapping (value = "/api/game/lottoresult", method = RequestMethod.GET)
-    public ResponseDto<?> recentLottoResult() {
-        return lottoService.lottoResult();
-    }
-
-    // 로또 개인 결과 확인
-    @RequestMapping (value = "/api/game/lottomyresult", method = RequestMethod.GET)
-    public ResponseDto<?> recentLottoResult(HttpServletRequest request) {
-        return lottoService.myLottoResult(request);
-    }
 
     // 카운터
     @RequestMapping (value = "/api/game/counter", method = RequestMethod.POST)
