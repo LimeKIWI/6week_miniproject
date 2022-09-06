@@ -40,24 +40,32 @@ public class RankingService {
         // 전체 멤버리스트를 이긴횟수 내림차순으로 가져오기
         List<Member> memberWinList = memberRepository.findAllByOrderByTotalWinCountDesc();
         List<WinCountRankResponseDto> countDtolist = new ArrayList<>();
-        for(int i = 0, n = memberWinList.size(); i < n && i < 30; i++) {
-            WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()     // 출력양식 dto
-                    .rank(i+1)                                                                      // 순위
-                    .nickName(memberWinList.get(i).getNickName())                                   // 닉네임
-                    .totalWinCount(memberWinList.get(i).getTotalWinCount())                         // 이긴횟수
-                    .build();
-            countDtolist.add(winCountRankResponseDto);
+        int count = 0;
+        for(int i = 0, n = memberWinList.size(); i < n && count < 30; i++) {
+            if(memberWinList.get(i).getUserRole() != null) {
+                WinCountRankResponseDto winCountRankResponseDto = WinCountRankResponseDto.builder()     // 출력양식 dto
+                        .rank(count + 1)                                                                      // 순위
+                        .nickName(memberWinList.get(i).getNickName())                                   // 닉네임
+                        .totalWinCount(memberWinList.get(i).getTotalWinCount())                         // 이긴횟수
+                        .build();
+                countDtolist.add(winCountRankResponseDto);
+                count++;
+            }
         }
         // 전체 맴버리스트를 소지포인트 내림차순으로 가져오기
+        count = 0;
         List<Member> memberPointList = memberRepository.findAllByOrderByPointDesc();
         List<PointRankResponseDto> pointDtoList = new ArrayList<>();
-        for(int i = 0, n = memberPointList.size(); i < n && i < 30; i++) {
-            PointRankResponseDto pointRankResponseDto = PointRankResponseDto.builder()              // 출력양식 dto
-                    .rank(i+1)                                                                      // 순위
-                    .nickName(memberPointList.get(i).getNickName())                                 // 닉네임
-                    .totalPoint(memberPointList.get(i).getPoint())                                  // 소지포인트
-                    .build();
-            pointDtoList.add(pointRankResponseDto);
+        for(int i = 0, n = memberPointList.size(); i < n && count < 30; i++) {
+            if(memberPointList.get(i).getUserRole() != null) {
+                PointRankResponseDto pointRankResponseDto = PointRankResponseDto.builder()              // 출력양식 dto
+                        .rank(count + 1)                                                                      // 순위
+                        .nickName(memberPointList.get(i).getNickName())                                 // 닉네임
+                        .totalPoint(memberPointList.get(i).getPoint())                                  // 소지포인트
+                        .build();
+                pointDtoList.add(pointRankResponseDto);
+                count++;
+            }
         }
 
         return ResponseDto.success(TotalRanking.builder()
