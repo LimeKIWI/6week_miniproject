@@ -9,8 +9,10 @@ import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
 import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
+import com.example.week6project.dto.TokenDto;
 import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import com.example.week6project.repository.MemberRepository;
+import com.example.week6project.repository.RefreshTokenRepository;
 import com.example.week6project.repository.comments.CommentRepository;
 import com.example.week6project.repository.results.CounterResultRepository;
 import com.example.week6project.repository.results.DiceResultRepository;
@@ -23,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +40,7 @@ public class UserService {
     private final DiceResultRepository diceResultRepository;
     private final CounterResultRepository counterResultRepository;
     private final LottoResultRepository lottoResultRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     private final CommentRepository commentRepository;
 
@@ -86,9 +90,11 @@ public class UserService {
         return ResponseDto.success(updateMember.getImg());
     }
 
+
+
     // 유저닉네임 업데이트
     @Transactional
-    public ResponseDto<?> updateInfo(NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request) {
+    public ResponseDto<?> updateInfo(NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request, HttpServletResponse response) {
         ResponseDto<?> chkResponse =  validateCheck(request);
         if(!chkResponse.isSuccess())
             return chkResponse;
@@ -102,6 +108,18 @@ public class UserService {
         CounterResult counterResult = counterResultRepository.findByMember(updateMember);
 
         updateMember.updateNickname(nicknameRequestDto);
+
+        // 기존 토큰 삭제
+
+        refreshTokenRepository.delete(refreshTokenRepository.findByMember(member).get());
+
+        // 토큰 재생성
+        TokenDto tokenDto = tokenProvider.generateTokenDto(member);
+
+        //헤더에 반환 to FE
+        response.addHeader("Authorization","Bearer "+tokenDto.getAccessToken());
+        response.addHeader("RefreshToken", tokenDto.getRefreshToken());
+        response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
 
         return ResponseDto.success(MyPageResponseDto.builder()
                 .id(updateMember.getId())
