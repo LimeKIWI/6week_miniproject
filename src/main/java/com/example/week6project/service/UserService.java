@@ -8,6 +8,7 @@ import com.example.week6project.domain.results.CounterResult;
 import com.example.week6project.domain.results.DiceResult;
 import com.example.week6project.domain.results.LottoResult;
 import com.example.week6project.domain.results.OddEvenResult;
+import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import com.example.week6project.repository.MemberRepository;
 import com.example.week6project.repository.results.CounterResultRepository;
 import com.example.week6project.repository.results.DiceResultRepository;
@@ -79,6 +80,33 @@ public class UserService {
         return ResponseDto.success(updateMember.getImg());
     }
 
+    // 유저닉네임 업데이트
+    @Transactional
+    public ResponseDto<?> updateInfo(NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request) {
+        ResponseDto<?> chkResponse =  validateCheck(request);
+        if(!chkResponse.isSuccess())
+            return chkResponse;
+        Member member = (Member) chkResponse.getData();
+
+        Member updateMember = memberRepository.findById(member.getId()).get();
+
+        OddEvenResult oddEvenResult = oddEvenResultRepository.findByMember(updateMember);
+        DiceResult diceResult = diceResultRepository.findByMember(updateMember);
+        LottoResult lottoResult = lottoResultRepository.findByMember(updateMember);
+        CounterResult counterResult = counterResultRepository.findByMember(updateMember);
+
+        updateMember.updateNickname(nicknameRequestDto);
+
+        return ResponseDto.success(MyPageResponseDto.builder()
+                .id(updateMember.getId())
+                .nickName(updateMember.getNickName())
+                .point(updateMember.getPoint())
+                .winCountOfOddEven(oddEvenResult.getWinCount())
+                .winCountOfDice(diceResult.getWinCount())
+                .earnPointOfLotto(lottoResult.getEarnPoint())
+                .highestCountOfCounter(counterResult.getMaxCount())
+                .build());
+    }
 
 
     private ResponseDto<?> validateCheck(HttpServletRequest request) {

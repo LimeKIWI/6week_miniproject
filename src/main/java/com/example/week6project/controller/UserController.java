@@ -1,6 +1,7 @@
 package com.example.week6project.controller;
 
 import com.example.week6project.controller.response.ResponseDto;
+import com.example.week6project.dto.requestDto.NicknameDuplicateCheckRequestDto;
 import com.example.week6project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,14 @@ public class UserController {
     }
 
     // 프로필 이미지 업로드
-    @RequestMapping (value = "/api/user/image/", method = RequestMethod.PATCH)
+    @RequestMapping (value = "/api/user/image", method = RequestMethod.PATCH)
     public ResponseDto<?> imageUpload(@RequestPart("image") MultipartFile multipartFile, HttpServletRequest request) {
         return userService.profileImageUpload(multipartFile, request);
     }
 
+    // 회원정보수정
+    @RequestMapping (value = "/api/user", method = RequestMethod.PATCH)
+    public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request) {
+        return userService.updateInfo(nicknameRequestDto, request);
+    }
 }
