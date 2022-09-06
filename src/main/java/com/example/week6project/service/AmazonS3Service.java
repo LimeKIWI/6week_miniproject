@@ -35,11 +35,11 @@ public class AmazonS3Service {
 
     //파일업로드
     @Transactional
-    public ResponseDto<?> uploadFile (MultipartFile multipartFile) {
-        if(validateFileExists(multipartFile))      // 빈 파일인지 확인
+    public ResponseDto<?> uploadFile(MultipartFile multipartFile) {
+        if (validateFileExists(multipartFile))      // 빈 파일인지 확인
             return ResponseDto.fail("NO_EXIST_FILE", "등록된 이미지가 없습니다.");
         String contentType = multipartFile.getContentType();
-        if(!contentType.equals("image/png") && !contentType.equals("image/jpeg") && !contentType.equals("image/jpg") && !contentType.equals("image/bmp"))
+        if (!contentType.equals("image/png") && !contentType.equals("image/jpeg") && !contentType.equals("image/jpg") && !contentType.equals("image/bmp"))
             return ResponseDto.fail("IMAGE_TYPE_ERROR", "JPG, PNG, BMP만 업로드 가능합니다.");
 
         String fileName = createFileName(multipartFile.getOriginalFilename());  // 난수파일이름생성 (난수이름+파일이름)
@@ -51,7 +51,7 @@ public class AmazonS3Service {
             amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, inputStream, objectMetadata)
                     .withCannedAcl(CannedAccessControlList.PublicRead));        // S3에 업로드
         } catch (IOException e) {
-            return ResponseDto.fail("FILE_UPLOAD_FAIL","파일 업로드 실패");
+            return ResponseDto.fail("FILE_UPLOAD_FAIL", "파일 업로드 실패");
         }
         ImageMapper imageMapper = ImageMapper.builder()                         // 업로드한 파일들을 관리할 테이블에 파일이름, URL넣기
                 .url(amazonS3Client.getUrl(bucketName, fileName).toString())
@@ -70,7 +70,7 @@ public class AmazonS3Service {
     @Transactional
     public boolean removeFile(String fileName) {
         Optional<ImageMapper> optionalImageMapper = imageMapperRepository.findByImageName(fileName); // 파일이름으로 파일가져오기
-        if(optionalImageMapper.isEmpty())    // 실제있는 파일인지 확인
+        if (optionalImageMapper.isEmpty())    // 실제있는 파일인지 확인
             return true;
         ImageMapper image = optionalImageMapper.get();
         imageMapperRepository.deleteById(image.getId());    // imageMapper에서 삭제
