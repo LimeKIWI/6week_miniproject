@@ -12,4 +12,6 @@ public interface LottoRepository extends JpaRepository<Lotto, Long> {
 
 
     List<Lotto> findAllByMemberId(String myId);
+
+    List<Lotto> findAllByLottoServerId(long lottosever_id);
 }
