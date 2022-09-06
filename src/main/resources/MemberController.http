@@ -84,53 +84,45 @@ Content-Type: application/json
   "passWord": "asdf311"
 }
 
-### oddtest
-POST http://localhost:8080/api/game/oddeven
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0NzQ0fQ.TKlf_efa6HKkyxK7V2L3laW9IN3Ndnh-hwUwM_Ui_HE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDg3NDR9.rkW00ig_SI-s3ieg8vIuMGSGEBp_PhYP4_VuxKnSYNQ
+### updateTEST
+PATCH http://localhost:8080/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQ3MzM1fQ.rG8KKPx8EBAncV-FAqLEGApgqkuDE2hUpMjbl9TJNL4
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNDEzMzV9.5jCITMQ_ANWAQINFfSTa57CdBAfgxP9ZEC8fBLKowOw
 accept: */*
 Content-Type: application/json
 
 {
-  "point" : 10,
-  "number" : 1
+  "nickName" : "변경닉네임"
 }
 
-### dicetest
-POST http://localhost:8080/api/game/dice
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0NzQ0fQ.TKlf_efa6HKkyxK7V2L3laW9IN3Ndnh-hwUwM_Ui_HE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDg3NDR9.rkW00ig_SI-s3ieg8vIuMGSGEBp_PhYP4_VuxKnSYNQ
+### logout
+POST http://localhost:8080/api/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQ3MjA1fQ.ZckVFSkHgimXo9ue6yLUwi9xBCzXDXDpb0gNe1f_YFQ
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwNDEyMDV9.72lZUFmYcEGHjYt35-C_VOekNJC929jdySo0soITCIg
 accept: */*
-Content-Type: application/json
-
-{
-  "point" : 5,
-  "number" : 5
-}
-
 
 ### commentPostTest
-POST http://localhost:8080/api/comment?gameId=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzU0MTAwfQ.-77InXtF9ciyhqJtmFXBuLBwUhP-phXrzs-P68eQSxQ
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDgxMDB9.n4jGscU75ToDCohmBixZAp8iZ00pKUsO1rHhLhErE7g
+POST http://localhost:8080/api/comment?gameId=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQ0MDkwfQ.M1iW_lxQKe4WMhJVGWyXWdEXA04uqRTM7y5i0tMrsjY
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwMzgwOTB9.D_YOHzCqfjfdYO3o6cYOLeAqmKu2mwEeSDGBBdFJchU
 accept: */*
 Content-Type: application/json
 
 {
-  "content" : "28전 1승 라이프는제로"
+  "content" : "1?"
 }
 
 ### commentGetTest
 GET http://localhost:8080/api/comment?gameId=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyNTIyfQ.OU8cL_xqFQEvj7FHcDzByUp7JH2yhLOJeSeiL9Uz3zE
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDY1MjJ9.OzOAyfF96l1SirtorevRQgVMTz2i4ozV4-m7TR8q040
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQxNTU1fQ._zDHf5qcBV5emIzB8IiVHZ8Bm3yfQmhZ811TvBcHfyI
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwMzU1NTV9.-lSsvrpGy2fhpOtyS2lgLbj4tVZzIBC0r4OlFBuhKyg
 accept: */*
 
 
 ### commentPatchTest
-PATCH http://localhost:8080/api/comment?gameId=2&id=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
+PATCH http://localhost:8080/api/comment?gameId=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQxNTU1fQ._zDHf5qcBV5emIzB8IiVHZ8Bm3yfQmhZ811TvBcHfyI
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwMzU1NTV9.-lSsvrpGy2fhpOtyS2lgLbj4tVZzIBC0r4OlFBuhKyg
 accept: */*
 Content-Type: application/json
 
@@ -139,9 +131,9 @@ Content-Type: application/json
 }
 
 ### commentDeleteTest
-DELETE http://localhost:8080/api/comment?gameId=2&id=1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyMzUyMzAwfQ.-FZygZef-NfKFnET6XVwA66rhr9RgwgXzr4TaHAMX7Y
-RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI5NDYzMDB9.PwU7eVzXEvnzCcxk4iQ53DR6F4lXuIELSzIAaQ3MfcE
+DELETE http://localhost:8080/api/comment?id=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RmIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYyNDQxNTU1fQ._zDHf5qcBV5emIzB8IiVHZ8Bm3yfQmhZ811TvBcHfyI
+RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMwMzU1NTV9.-lSsvrpGy2fhpOtyS2lgLbj4tVZzIBC0r4OlFBuhKyg
 accept: */*
 
 

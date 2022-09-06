@@ -1,6 +1,7 @@
 package com.example.week6project.domain.comments;
 
 import com.example.week6project.controller.request.CommentRequestDto;
+import com.example.week6project.domain.GameType;
 import com.example.week6project.domain.Member;
 import com.example.week6project.domain.Timestamped;
 import lombok.*;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-public class DiceComment extends Timestamped {
+public class Comment extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,9 @@ public class DiceComment extends Timestamped {
 
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private Enum<GameType> gameTypeEnum;
 
     public void update(CommentRequestDto requestDto) {
         this.content = requestDto.getContent();
