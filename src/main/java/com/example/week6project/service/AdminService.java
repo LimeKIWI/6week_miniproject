@@ -27,11 +27,13 @@ public class AdminService {
         List<Member> tempList=memberRepository.findAll();
         List<infoDto> infoAllMember=new ArrayList<>();
         for (int i = 0; i < tempList.size(); i++) {
-            infoDto temp_dto= infoDto.builder()
-                    .id(tempList.get(i).getId())
-                    .point(tempList.get(i).getPoint())
-                    .build();
-            infoAllMember.add(temp_dto);
+            if(tempList.get(i).getUserRole() != null) {
+                infoDto temp_dto = infoDto.builder()
+                        .id(tempList.get(i).getId())
+                        .point(tempList.get(i).getPoint())
+                        .build();
+                infoAllMember.add(temp_dto);
+            }
         }
         return ResponseDto.success(infoAllMember);
     }
