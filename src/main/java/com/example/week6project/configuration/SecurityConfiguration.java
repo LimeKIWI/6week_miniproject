@@ -61,12 +61,12 @@ public class SecurityConfiguration {
             .authorizeRequests()
             .antMatchers("/api/adminPage", "/api/adminPage/**").hasRole("ADMIN")
             .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
-            .antMatchers("/h2-console/**").permitAll()
             .antMatchers("/api/member/**").permitAll()
             .anyRequest().authenticated()
 
             .and()
             .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
+
 
     return http.build();
   }
