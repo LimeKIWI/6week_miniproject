@@ -53,47 +53,21 @@ public class SecurityConfiguration {
             .authenticationEntryPoint(authenticationEntryPointException)
             .accessDeniedHandler(accessDeniedHandlerException)
 
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-        .and()
-        .authorizeRequests()
-        .antMatchers("/api/adminPage", "/api/adminPage/**").hasRole("ADMIN")
-        .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
-        .antMatchers("/api/member/**").permitAll()
-        .anyRequest().authenticated()
+            .and()
+            .authorizeRequests()
+            .antMatchers("/api/adminPage", "/api/adminPage/**").hasRole("ADMIN")
+            .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
+            .antMatchers("/api/member/**").permitAll()
+            .anyRequest().authenticated()
 
-        .and()
-        .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
+            .and()
+            .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
 
-    /*
-    http
-            .formLogin()
-            .loginPage("") //로그인 페이지
-            .defaultSuccessUrl("") // 기본 페이지
-            .failureUrl("") // 실패시 이동하는 페이지
-            .usernameParameter("id")
-            //Html에서 input 박스내 name값(id=username,name=id)
-            .passwordParameter("password")
-            .loginProcessingUrl("")
-            .successHandler(new AuthenticationSuccessHandler() {
-              @Override
-              public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                System.out.println("Authentication" + authentication.getName());
-                response.sendRedirect("/");//기본페이지
-              }
-            })
-            .failureHandler(new AuthenticationFailureHandler() {
-              @Override
-              public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                System.out.println("Exception" + exception.getMessage());
-                response.sendRedirect("/");//실패시 이동페이지
-              }
-            })
-            .permitAll();
-
-     */
     return http.build();
   }
 }
