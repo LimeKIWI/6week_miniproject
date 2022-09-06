@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,8 +30,8 @@ public class UserController {
 
     // 회원정보수정
     @RequestMapping (value = "/api/user", method = RequestMethod.PATCH)
-    public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request) {
-        return userService.updateInfo(nicknameRequestDto, request);
+    public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request, HttpServletResponse response) {
+        return userService.updateInfo(nicknameRequestDto, request, response);
     }
 
     // 회원탈퇴 withDrawal
