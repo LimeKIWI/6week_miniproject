@@ -51,15 +51,15 @@ public class GameService {
 
 
         if (oddEvenRequestDto.getNumber() >= 2 || oddEvenRequestDto.getNumber() < 0)
-            return ResponseDto.fail("BAD_REQUEST","홀(1) 짝(0)을 걸어주세요");
+            return ResponseDto.success("홀(1) 짝(0)을 걸어주세요");
 
 
         // 베팅포인트와 소지포인트 체크
         int bettingPoint = oddEvenRequestDto.getPoint();
         if(bettingPoint <= 0 || updateMember.getPoint() < bettingPoint)
-            return ResponseDto.fail("BET_POINT_ERR","소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
+            return ResponseDto.success("소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
         if(updateMember.getPoint() <= 0)
-            return ResponseDto.fail("ZERO_POINT","모든 포인트를 잃으셨습니다");
+            return ResponseDto.success("모든 포인트를 잃으셨습니다");
         updateMember.addPoint((bettingPoint*-1));   // 배팅한 포인트 차감
 
 
@@ -105,15 +105,15 @@ public class GameService {
 
 
         if (diceRequestDto.getNumber() <= 0 || diceRequestDto.getNumber() > 6)
-            return ResponseDto.fail("BAD_REQUEST","주사위 눈금 만큼을 걸어주세요(1~6)");
+            return ResponseDto.success("주사위 눈금 만큼을 걸어주세요(1~6)");
 
 
         // 베팅포인트와 소지포인트 체크
         int bettingPoint = diceRequestDto.getPoint();
         if(bettingPoint <= 0 || updateMember.getPoint() < bettingPoint)
-            return ResponseDto.fail("BET_POINT_ERR","소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
+            return ResponseDto.success("소지포인트보다 많이 배팅하셨거나 배팅 포인트가 0입니다");
         if(updateMember.getPoint() <= 0)
-            return ResponseDto.fail("ZERO_POINT","모든 포인트를 잃으셨습니다");
+            return ResponseDto.success("모든 포인트를 잃으셨습니다");
         updateMember.addPoint((bettingPoint*-1));   // 배팅한 포인트 차감
 
 
