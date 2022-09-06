@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -37,7 +36,7 @@ public class Lotto {
     @Column
     private int num6;
 
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_identity", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
