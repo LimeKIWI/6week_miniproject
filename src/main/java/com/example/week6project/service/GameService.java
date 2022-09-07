@@ -27,10 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 public class GameService {
 
     // 배율 설정 (추후 ENUM으로 구현하여 관리자 페이지에서 배율 설정 할 수 있게 기능 구현 ?)
-    static final int ODDEVEN_MAGNIFICATION = 2; // 홀짝 배율
-    static final int DICE_MAGNIFICATION = 8;    // 주사위 배율
-
-    static final double COUNTER_MAGNIFICATION = 10; // 환산 배율
+    static final int ODDEVEN_MAGNIFICATION = 3; // 홀짝 배율
+    static final int DICE_MAGNIFICATION = 10;    // 주사위 배율
+    static final double COUNTER_MAGNIFICATION = 5; // 환산 배율
 
     private final TokenProvider tokenProvider;
     private final OddEvenResultRepository oddEvenResultRepository;
