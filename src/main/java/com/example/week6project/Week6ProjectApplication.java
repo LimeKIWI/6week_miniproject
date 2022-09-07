@@ -23,6 +23,7 @@ public class Week6ProjectApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("http://1336.s3-website.ap-northeast-2.amazonaws.com")
                         .exposedHeaders("Authorization", "RefreshToken")
                         .allowedMethods("*")
                         .allowedHeaders("*")
