@@ -50,7 +50,7 @@ public class GameService {
         Member updateMember = memberRepository.findById(member.getId()).get();
 
 
-        if (oddEvenRequestDto.getNumber() >= 1 || oddEvenRequestDto.getNumber() < 3)
+        if (oddEvenRequestDto.getNumber() < 1 || oddEvenRequestDto.getNumber() > 2)
             return ResponseDto.success("홀(1) 짝(2)을 걸어주세요");
 
 
