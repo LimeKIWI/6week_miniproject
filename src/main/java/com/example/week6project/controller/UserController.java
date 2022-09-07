@@ -28,6 +28,12 @@ public class UserController {
         return userService.profileImageUpload(multipartFile, request);
     }
 
+    // 이미지 url 받기
+    @RequestMapping (value = "/api/user/image", method = RequestMethod.GET)
+    public ResponseDto<?> getImageUrl(HttpServletRequest request) {
+        return userService.getImageUrl(request);
+    }
+
     // 회원정보수정
     @RequestMapping (value = "/api/user", method = RequestMethod.PATCH)
     public ResponseDto<?> updateInfo(@RequestBody NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request, HttpServletResponse response) {

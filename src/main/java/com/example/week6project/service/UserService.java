@@ -90,6 +90,17 @@ public class UserService {
         return ResponseDto.success(updateMember.getImg());
     }
 
+    // 이미지 url 받기
+    public ResponseDto<?> getImageUrl(HttpServletRequest request) {
+        ResponseDto<?> chkResponse =  validateCheck(request);
+        if(!chkResponse.isSuccess())
+            return chkResponse;
+        Member member = (Member) chkResponse.getData();
+
+        return ResponseDto.success(member.getImg());
+
+    }
+
     // 유저닉네임 업데이트
     @Transactional
     public ResponseDto<?> updateInfo(NicknameDuplicateCheckRequestDto nicknameRequestDto, HttpServletRequest request, HttpServletResponse response) {
@@ -171,6 +182,7 @@ public class UserService {
         }
         return tokenProvider.getMemberFromAuthentication();
     }
+
 
 
 }
