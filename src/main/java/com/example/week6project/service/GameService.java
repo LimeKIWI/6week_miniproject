@@ -50,8 +50,8 @@ public class GameService {
         Member updateMember = memberRepository.findById(member.getId()).get();
 
 
-        if (oddEvenRequestDto.getNumber() >= 2 || oddEvenRequestDto.getNumber() < 0)
-            return ResponseDto.success("홀(1) 짝(0)을 걸어주세요");
+        if (oddEvenRequestDto.getNumber() < 1 || oddEvenRequestDto.getNumber() > 2)
+            return ResponseDto.success("홀(1) 짝(2)을 걸어주세요");
 
 
         // 베팅포인트와 소지포인트 체크
@@ -69,7 +69,7 @@ public class GameService {
         // 게임시작
         int winCount = 0, point = 0;
         String result = "실패";
-        int generateNum = (int)Math.floor(Math.random()*2);
+        int generateNum = (int)Math.floor(Math.random()*2)+1;
         if(generateNum == oddEvenRequestDto.getNumber()) {
             result = "성공";
             winCount = 1;
