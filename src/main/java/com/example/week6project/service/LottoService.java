@@ -45,7 +45,7 @@ public class LottoService {
     //상수
 
     static final int LOTTO_POINT=1000; // 로또 금액
-    static final int LOTTO_MAX_NUM=10; // 로또 추첨 범위
+    static final int LOTTO_MAX_NUM=20; // 로또 추첨 범위
     static final int BASIC_1ST_POINT = 15000000; // 1등 기본 당첨금
     static final int BASIC_2ND_POINT = 3000000; // 2등 기본 당첨금
     static final int BASIC_3RD_POINT = 200000; // 3등 기본 당첨금
@@ -281,7 +281,7 @@ public class LottoService {
             }
 
             if (count2nd.size() != 0) {
-                point2nd = point1st / count2nd.size();
+                point2nd = point2nd / count2nd.size();
             }
 
             if (count3rd.size() != 0) {
