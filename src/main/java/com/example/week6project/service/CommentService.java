@@ -1,6 +1,7 @@
 package com.example.week6project.service;
 
 import com.example.week6project.domain.comments.*;
+import com.example.week6project.repository.MemberRepository;
 import com.example.week6project.repository.comments.*;
 import com.example.week6project.security.TokenProvider;
 import com.example.week6project.controller.request.CommentRequestDto;
@@ -23,6 +24,7 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final TokenProvider tokenProvider;
+    private final MemberRepository memberRepository;
 
     // 댓글 작성
     @Transactional
@@ -56,12 +58,14 @@ public class CommentService {
         if(!chkResponse.isSuccess())
             return chkResponse;
         Member member = (Member) chkResponse.getData();
+        // 유저 테이블에서 유저객체 가져오기
+        Member updateMember = memberRepository.findById(member.getId()).get();
 
         Optional<Comment> getComment = commentRepository.findById(id);
         if(getComment.isEmpty())
             return ResponseDto.fail("COMMENT_NOT_FOUND", "코멘트를 찾을 수 없습니다.");
         Comment comment = getComment.get();
-        if(!comment.validateMember(member))
+        if(comment.validateMember(updateMember))
             return ResponseDto.fail("AUTHOR_NOT_MATCHED", "작성자가 아닙니다.");
 
         comment.update(commentRequestDto);
@@ -76,12 +80,14 @@ public class CommentService {
         if(!chkResponse.isSuccess())
             return chkResponse;
         Member member = (Member) chkResponse.getData();
+        // 유저 테이블에서 유저객체 가져오기
+        Member updateMember = memberRepository.findById(member.getId()).get();
 
         Optional<Comment> getComment = commentRepository.findById(id);
         if(getComment.isEmpty())
             return ResponseDto.fail("COMMENT_NOT_FOUND", "코멘트를 찾을 수 없습니다.");
         Comment comment = getComment.get();
-        if(!comment.validateMember(member))
+        if(comment.validateMember(updateMember))
             return ResponseDto.fail("AUTHOR_NOT_MATCHED", "작성자가 아닙니다.");
 
         commentRepository.deleteById(id);
