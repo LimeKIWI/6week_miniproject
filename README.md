@@ -49,6 +49,8 @@
 |게임댓글보기|GET|/api/comment|   |{ 'success': true, data: “삭제완료”, error:null } OR { ‘success’: false, ’code’ : “BAD_REQUEST’ message:’댓글 삭제 실패“ }|/localhost:8080/api/comment?id=1|
 |게임댓글삭제|DELETE|/api/comment|   |{ 'success': true, data: [{ id : “댓글id”, nickname: “닉네임”, content: “내용”},{ nickname: “닉네임”, content: “내용”}], error:null } OR { ‘success’: false, ’code’ : “BAD_REQUEST’ message:’댓글 불러오기 실패“ }|/localhost:8080/api/comment?gameId=1|
 
+***
+
 ## 3.구현설명 및 트러블슈팅
 
 ### 몇가지 구현설명 
