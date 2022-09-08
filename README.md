@@ -14,11 +14,11 @@
 
 ## 2. 설계
 
-와이어프레임
+### 와이어프레임
 
 ![](https://velog.velcdn.com/images/lries7897/post/582bb77d-ca5c-4223-bbfc-efd66bff3b60/image.png)
 
-api명세 
+### api명세 
 
 |기능|METHOD|URL|request|response|비고|
 |---|---|---|---|---|---|
